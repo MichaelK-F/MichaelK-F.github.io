@@ -1,0 +1,96 @@
+
+<html>
+    <head>
+    <title>End of the Internet</title>
+    </script>
+    <script type="text/javascript">
+    _uacct = "UA-422707-2";
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<div id="container">
+	</div>
+    </head>
+    <body>
+    <p align=center><font size=+4>Congratulations!</font>
+    <p align=center><b>You have finally reached the end of the internet!</b><br>
+    There's nothing more to see, no more links to visit.<br>
+    You've done it all.<br>
+    This is the very last page on the very last server at the very far end of the internet.
+    <p align=center>You should now turn off your computer and go do something useful with the rest of your life. *
+    <p>Suggestions:<br>
+    <ul>
+    <li>Read a book
+    <li>Do some public service
+    <li>Personally interact with your neighbors that you've probably only met online
+    <li>Plant a tree
+    <li>Introduce yourself to those other people who live at your house (your family).
+    </ul>
+    <p align=center><font size=-1><i><a href="light_on.html">* Please don't forget to turn off the lights on your way out.</a></i></font>
+    <p>In order to save time, we will now start downloading the internet to your local drive.
+    <!-- Place this tag where you want the +1 button to render. -->
+    <div class="g-plusone"></div>
+    </p>
+    
+    <p align="center"><img src="http://hmpg.net/downloadwww.gif">
+        <div id=error>
+            <p align="center"><img src="error downloading the internet.png">
+        </div>
+
+        <style>
+            
+
+            div.build {
+              width:100%;
+              height:200px;
+            }
+        </style>
+    
+    
+    <!-- Place this tag after the last +1 button tag. -->
+    <script type="text/javascript">
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
+
+    <script>
+        var blinkInterval = setInterval(change, 1500),   // set the interval into a variable
+    image = document.getElementById('error'),     // replace test with your client id: <%=imgMain.ClientID %>
+    x = 1;
+
+function change() {
+    if (x % 2 === 1) {  // see if it is odd or even by modding by 2 and getting remainder
+        image.style.display = 'none';
+    } else {
+        image.style.display = 'block';
+    }
+    
+    x++; // increment x
+    
+    if (x === 999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999) {  // should have happened 10 times (which is 20 seconds with your intervals being at 2 seconds)
+      clearInterval(blinkInterval); // clear the interval (should end hidden as odd is display none and we clear beforethe 20th is run)
+    }
+}
+    </script>
+
+<script>
+	//Stick to bottom code
+setInterval(function () {
+  $("html, body").scrollTop($("body").height());
+},10);
+
+//Expanding body width
+//  - This isn't what you'd add to your code
+setInterval(function () {
+  $("<div>")
+    .addClass("build")
+    .appendTo("#container");
+},500);
+</script>
+
+
+
+    </body>
+    </html>

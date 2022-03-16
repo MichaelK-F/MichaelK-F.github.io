@@ -1,0 +1,73 @@
+
+<!-- 
+    Where is the Sloth? 
+    Copyright © Michael Ryczkowski 2017
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Whats displayed in search result snippet on google -->
+		<meta name="description" content="Where is the sloth? Try and find it!" />
+
+		<title>Where is the Sloth?</title>
+
+        <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet">
+
+        <!-- My styles -->
+        <!--<link rel="stylesheet" href="css/style.css">-->
+        <link rel="stylesheet" href="https://whereisthesloth.com/dist/css/sloth.min.css">
+
+    </head>
+    <body>
+
+        
+        
+        
+        <!-- App -->
+        <div id="shade"></div>
+
+        <div id="flashlight"></div>
+        <div id="slothContainer">
+            <img id="sloth" src="https://whereisthesloth.com/images/cute-sloth.jpg" onmouseover="slothMouseOver()" onmouseout="slothMouseOut()">
+        </div>
+        <div id="catContainer">
+            <img id="cat" src="https://whereisthesloth.com/images/cat-hat.jpg">
+        </div>
+
+        <img id="glasses" src="https://whereisthesloth.com/images/Thug_Life_Glasses.png">
+        <audio id="foundMusic" loop><source src="https://whereisthesloth.com/sound/nextEpisodeShort.mp3" type="audio/mpeg"></audio>
+
+        <!-- Opening dialog -->
+        <div id="openingDialog" class="my-dialog">
+            <h1>Where is the sloth?</h1>
+            <button id="goBtn" class="pure-button pure-button-primary my-dialog-btn" onclick="goClick(event)">Go</button>
+        </div>
+
+        <!-- Found Dialog -->
+        <div id="foundDialog" class="my-dialog">
+            <button id="goAgainBtn" class="pure-button my-dialog-btn" onclick="goAgainClick(event)">Again?</button><br>
+            <a href="../home2.html">Home</a>
+            
+                </div>
+            </div>
+        </div>
+        
+
+
+        <!-- JS libs -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+        <!-- My js -->
+        <!--<script src="js/app.js"></script>-->
+        <script src="https://whereisthesloth.com/dist/js/sloth.min.js"></script>
+
+        <script>
+            init();
+        </script>
+    </body>
+</html>

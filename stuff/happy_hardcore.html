@@ -1,0 +1,91 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>happy happy hardcore</title>
+<link rel="apple-touch-icon" sizes="152x152" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon.ico">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+	
+	
+<script language="JavaScript">
+var fallObjects=new Array();function newObject(url,height,width){fallObjects[fallObjects.length]=new Array(url,height,width);}
+
+
+var numObjs=120, waft=80, fallSpeed=22, wind=0;
+newObject("https://happyhappyhardcore.com/smile_1.gif",29,27);
+newObject("https://happyhappyhardcore.com/smile_2.gif",22,20);
+newObject("https://happyhappyhardcore.com/smile_3.gif",15,15);
+newObject("https://happyhappyhardcore.com/smile_4.gif",26,25);
+newObject("https://happyhappyhardcore.com/smile_5.gif",23,23);
+newObject("https://happyhappyhardcore.com/smile_6.gif",26,25);
+newObject("https://happyhappyhardcore.com/smile_7.gif",32,33);
+newObject("https://happyhappyhardcore.com/smile_8.gif",18,18);
+newObject("https://happyhappyhardcore.com/smile_9.gif",31,33);
+newObject("https://happyhappyhardcore.com/smile_10.gif",15,15);
+newObject("https://happyhappyhardcore.com/smile_11.gif",30,30);
+newObject("https://happyhappyhardcore.com/smile_12.gif",27,31);
+newObject("https://happyhappyhardcore.com/smile_13.gif",22,20);
+newObject("https://happyhappyhardcore.com/smile_14.gif",23,23);
+newObject("https://happyhappyhardcore.com/smile_15.gif",26,25);
+newObject("https://happyhappyhardcore.com/smile_16.gif",30,48);
+newObject("https://happyhappyhardcore.com/smile_17.gif",28,27);
+newObject("https://happyhappyhardcore.com/smile_18.gif",33,33);
+
+
+
+
+function winSize(){winWidth=(moz)?window.innerWidth:document.body.clientWidth;winHeight=(moz)?window.innerHeight:document.body.clientHeight;}
+function winOfy(){winOffset=(moz)?window.pageYOffset:document.body.scrollTop;}
+function fallObject(num,vari,nu){
+	objects[num]=new Array(parseInt(Math.random()*(winWidth-waft)),-10,(parseInt(Math.random()*waft))*((Math.random()>0.5)?1:-1),0.02+Math.random()/20,0,1+parseInt(Math.random()*fallSpeed),vari,fallObjects[vari][1],fallObjects[vari][2]);
+	if(nu==1){document.write('<img id="fO'+i+'" style="position:fixed;" src="'+fallObjects[vari][0]+'">'); }
+}
+
+
+function fall(){
+	for(i=0;i<numObjs;i++){
+var fallingObject=document.getElementById('fO'+i);
+		if((objects[i][1]>(winHeight-(objects[i][5]+objects[i][7])))||(objects[i][0]>(winWidth-(objects[i][2]+objects[i][8])))){fallObject(i,objects[i][6],0);}
+		objects[i][0]+=wind;objects[i][1]+=objects[i][5];objects[i][4]+=objects[i][3];
+		with(fallingObject.style){ top=objects[i][1]+winOffset+'px';left=objects[i][0]+(objects[i][2]*Math.cos(objects[i][4]))+'px';}
+	}
+	setTimeout("fall()",31);
+}
+
+
+
+var objects = new Array(),
+winOffset=0,
+winHeight,
+winWidth,
+togvis,
+moz=(document.getElementById&&!document.all)?1:0;winSize();
+
+for (i=0;i<numObjs;i++){fallObject(i,parseInt(Math.random()*fallObjects.length),1);}
+fall();
+
+if (!Function.prototype.bind){
+    Function.prototype.bind = function (bind){
+        var self = this;
+        return function(){
+            return self.apply(bind, arguments);
+        };
+    };
+}
+
+
+</script>
+
+</head>
+
+<body>
+
+
+ 
+
+ 
+</body>
+</html>
