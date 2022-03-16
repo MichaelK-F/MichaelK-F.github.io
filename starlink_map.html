@@ -1,0 +1,428 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><title>
+	Starlink - dynamic 3D orbit display
+</title><meta http-equiv="X-UA-Compatible" content="IE=edge" /><meta name="description" content="Satellite predictions and other astronomical data customised for your location." /><link href="css/ha.css" rel="stylesheet" type="text/css" /><link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon" /><link rel="icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="/scripts/standard.min.js"></script>
+	<script type="text/javascript">
+		function updateLocalTime(utc) {
+			var localdiff = parseInt($('#utcOffset').val());
+			var local_now = new Date(utc.getTime() + localdiff);
+			$('#spanTime').text(formatTime(local_now));
+		}
+
+		$(function () {
+			onClockTick = updateLocalTime;
+			startClock();
+		});
+	</script>
+	
+    <meta charset="UTF-8" />
+    <script src="scripts/moment.min.js"></script>
+    <script src="scripts/moment-duration-format.js"></script>
+    <script src="scripts/numeral.min.js"></script>
+    
+    <script src="scripts/orbit3ddisplay.js?v=3"></script>
+    <script>
+        var ssd;
+        var startTime;
+        var selectedSat;
+        var animationSpeed = 0;
+        var lastOffset = 0;
+        var lastFrameTime;
+        var realTimeMode = false;
+        var initialAnimationMode = true;
+
+        var userLoc = {
+            latitude: 0,
+            longitude: 0,
+            name: 'Unspecified',
+            zoneColor: '#ff0000',
+            zoneBorderColor: '#f00',
+            textColor: '#fff',
+            showIcon: true,
+            iconColor: 'white'
+        };
+
+        jQuery(function () {
+            ssd = new Orbit3dDisplay.Orbit3dDisplay({
+                time: new Date().getTime(),
+                container: document.getElementById('mydiv'),
+                earthTextureUrl: 'images/land_ocean_ice_2048.jpg',
+                satSize: 5,
+                primarySatColor: 0xffff00,
+                primarySatEclipseColor: 0x808000,
+                secondarySatColor: 0xff0000,
+                secondarySatEclipseColor: 0x800000,
+                showGrid: true,
+                showDayShading: true,
+                showOrbitEclipses: true,
+                groundStations: [userLoc],
+                initialObserverLat: userLoc.latitude,
+                initialObserverLong: userLoc.longitude
+          });
+
+            setTimeout(updateSatInfo, 200);
+            onLaunchChanged();
+
+            startTime = new Date().getTime();
+            doAnimation();
+       });
+
+        function pause() {
+            animationSpeed = 0;
+            initialAnimationMode = false;
+            realTimeMode = false;
+            setActiveButton('btnPause');
+        }
+
+        function setAnimationSpeed(newSpeed) {
+            if (animationSpeed == 0)
+                lastFrameTime = new Date().getTime();
+            realTimeMode = false;
+            animationSpeed = newSpeed;
+            initialAnimationMode = false;
+            if (newSpeed < 50)
+                setActiveButton('btnFast1');
+            else if (newSpeed == 50)
+                setActiveButton('btnFast2');
+            else
+                setActiveButton('btnFast3');
+     }
+
+        function doAnimation() {
+            var now = new Date().getTime();
+            if (initialAnimationMode) {
+                var newTime = now - 1000000 + (now - startTime) * 150;
+                if (newTime > now) {
+                    newTime = now;
+                    initialAnimationMode = false;
+                    realTimeMode = true;
+                    setActiveButton('btnRT');
+             }
+                ssd.time = newTime;
+            }
+            else {
+                lastOffset += (now - lastFrameTime) * animationSpeed;
+                if (realTimeMode)
+                    ssd.time = now
+                else if (animationSpeed > 0)
+                    ssd.time = now + lastOffset;
+            }
+            lastFrameTime = now;
+            setTimeout(doAnimation, 20);
+        }
+
+        function setRealTimeMode() {
+            animationSpeed = 0;
+            realTimeMode = true;
+            ssd.time = new Date().getTime();
+            lastOffset = 0;
+            initialAnimationMode = false;
+            setActiveButton('btnRT');
+        }
+
+        function setActiveButton(id) {
+            $('#btnRT').removeClass('selectedButton');
+            $('#btnPause').removeClass('selectedButton');
+            $('#btnFast1').removeClass('selectedButton');
+            $('#btnFast2').removeClass('selectedButton');
+            $('#btnFast3').removeClass('selectedButton');
+            $('#' + id).addClass('selectedButton');
+        }
+
+        function updateSatInfo() {
+            if (selectedSat !== ssd.primarySat) {
+                selectedSat = ssd.primarySat;
+                if (selectedSat) {
+                    $('#satid').text(selectedSat.userData.name + ' (' + selectedSat.userData.id + ')');
+                    $('#cospar').text(selectedSat.userData.cospar);
+                    var txtOrbit = Math.round(selectedSat.userData.perigee) + ' x ' + Math.round(selectedSat.userData.apogee) + ', '
+                        + numeral(selectedSat.userData.inc).format('0.0') + '�';
+                    $('#orbit').text(txtOrbit);
+                }
+                else {
+                    $('#satid').text('');
+                    $('#cospar').text('');
+                    $('#orbit').text('');
+                }
+            }
+            $('#time').text(moment(ssd.time).format('HH:mm:ss'));
+            setTimeout(updateSatInfo, 200);
+        }
+
+        function onLaunchChanged(launchId) {
+            var query = 'query ($launchId: ID) {launches(group: "Starlink", id: $launchId) {utc satellites {id cospar name orbitalStatus orbit {epoch tle inclination perigee apogee}}}}';
+            var variables = { launchId: launchId };
+            if (launchId == "0")
+                variables = { launchId: null};
+
+            var graphQLParams = { "query": query, variables: variables, "operationName": "starlinkSatsForLaunch" };
+
+            $.ajax({
+                url: 'https://heavens-above.com/api2/graphql',
+                method: 'POST',
+                contentType: 'application/json',
+                dataType: 'json',
+                headers: {
+                    'Accept': 'application/json'
+                },
+                data: JSON.stringify(graphQLParams),
+                success: function (data) {
+                    var satellites = [];
+                    for (var iLaunch = 0; iLaunch < data.data.launches.length; ++iLaunch) {
+                        var satData = data.data.launches[iLaunch].satellites;
+                        //console.log(data);
+                        for (var ix = 0; ix < satData.length; ++ix) {
+                            if (satData[ix].orbitalStatus == 'EarthOrbit') {
+                                var sat = {};
+                                sat.id = satData[ix].id;
+                                sat.name = satData[ix].name;
+                                sat.cospar = satData[ix].cospar;
+                                sat.tle = satData[ix].orbit.tle;
+                                sat.perigee = satData[ix].orbit.perigee;
+                                sat.apogee = satData[ix].orbit.apogee;
+                                sat.inc = satData[ix].orbit.inclination;
+                                satellites.push(sat);
+                            }
+                        }
+                    }
+                    ssd.setSatellites(satellites);
+                    //ssd.setPrimarySatellite(satellites[0].id);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log("Error fetching sat data: " + textStatus + " error thrown: " + errorThrown);
+                }
+            });
+        }
+
+        var starlinkLaunches;
+
+    </script>
+    <style>
+        .selectedButton {
+            background-color: lime;
+        }
+    </style>
+</head>
+<body>
+	<form name="aspnetForm" method="post" action="./StarLink.aspx" id="aspnetForm">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="X4m1d70SgEglS0H5Sqp8wbBXE1C/YwKGjc/hFFc37EeKDT8xN3xksZocsbloQIOJOau5OPXTg3qvELycOTPxUMrJYtXFA93pfAsdvJ1i06YqL3VJand5SgrfxY4vLb+kIChN1rBrLOdaA5kAED4PPQsqLZ6oZcF009lRqCCm8929VooHeGBDH4rr9wm+lui5fWPC5FygoiQf0wDoXJHddIdOB0I10SlqVcXI1NuoTigE2EgJtBloTJxstODrDbXpVl160tUaOadKxxSjcBAnEoHe/OE+5eZxjjk+xkuktxUwTOlWBfo9Vez/CdHv4kFahBnhq8Or277pbNqpHPJSo/16JNGivtqOvjIIJL2T+L/02/buzoG2gu6Ktd4ErnU/SxQnCm+so9NIhhdyfW5TZAcOIqliF5hEXdpqDNEjY5x3erK4sto803qZt96J7m6Q+Z1ECULUru6X9tNR2PH9PHyWtYVQExFjiC5GilMA+WcQq1ZjtykEN4SHdaR//poDZMB/KaUKnzlzFtonHvDiCvZpNbtuVovkc84RLwENL6byZdK6j5U+DTgB1F0nApAK0lFSMaj41983GoQcV10vYpnF+D+AJXLYk9cad3Fm3HGHHgfZNPohBJCH62CdZ/4wwVLipHULJzqrTSGgHMNCWcM7n1teX7BU5vPkAXFZXeoj8/6SQ6Fc1c0vnkyUqjJvf6/U/syQcpBaXIDJD7Co6YUUzogSLBOjiSFUnYZyC14WgDFMXYn1ht5XLxJiadMX0CmsjOju+9M8zSao1+GmB5I/0e13EBHQ7rwsq1YgdcBILRA/Znep7AUjrCIHUlWsS/fIsgFo3MCEsmNAZxk4mlOTgZlPIstvidxPfBY3IyjfYREKnznIfubL1FgD9KYmO5LEU9BpgArTtJQg0VngD+9kdIHGzpYo757tefhl80Ch/T7fdVmuPuv6ciVgR6prZ7txrMK5xxfgHo/kHJLZFx7jEwlJzakuKAF5HArvduNNamCrX29A8q0Ev5rnAalrs2HGNge1c+N6oW8lFtbBojfVwCLcb3qQTJZe1n+rV6WuUOL25tF1pCqJOXovzuoBzp46of01mAQPJfhbZ8DhcSSUCqxEAxVEiyRIjtPvAVkfxZHX42kaBhf397MsuqecoSqZr8jx13pTHb+vXl2XyS/z7dP//GevJBmi4l45m9X/RiDCG8zqKFiS9vi1u9s7/Y5btYUfdrFEG9wptEEeiWriQRNzFKH6bGOGFEIJCICy0kxyJ4zoyWU6ZgP4dD3CgQqaspqbhXVBGgnEu+fiGAa5+kIQ+lXXGciiVE4l8/SmWHOwtKbkZu+Tut9OvyByQ7QlqmunPXbWAiddfhB/kJkLE3CxeQF/bVOWhG4ZSmMGGPkASp+Zx+xFkV1huoi1JDaqVj8BelUAvc2csKAIf1cXajXgpNU8aEMnlhUl8crkEwgYZ/jp3sfbn+uUPR139ckreq4mMaq98Soh9EeoIjhNHN+tlA0C8gPKEzgQc98l74/+zELZkpJNVscx/mtCQD3pAOnt89lkEWMEK1LZtKbf3TkfJ9RyiPd1I3c3kfBJIPPnV7Td0m3aDg9P3gSFSwhMlHFL0qxcU71hobBlgiY2UWKD2cnHosWymE/KMp8CR794cngIRhhunXrSrxnI4GTnkz39/scO6MY45Ig2PtkYUXtm9kCKSkxtT49kgPiPeDamg0Pj4bB+A9SMXcDc+Vq7ZwehzgMcXMIJ+Eb1SJuq2oeWEdv2NhCfNK5nr/QqKJ3yT6iamUAlGh+UUpU09qyu4qNLnsIKQDLS4EeS7tBm0h1NQBgxvKR2d6fdgRjJa+WA7iHg5mGorjktAW8ZizxFh/Adj9AFGbYMreLA3C0Ka6d8Db8qEy5+oXl1xRjk1iQPazwmEBF2Iv4culxbjw7bviSnD5ZjCCZOW29QI6lejStE/4LrU3I0Rw1z311fjrYX5W01tidtEd7V6ofpAPpqjuUeI+5xrYHaZnTEVawyAU5QL7WadRYIrLFlmgp7DvPvi3813usgd8HeCzObmHZyrOWU/63qDOaXMjHne7SEVUV4L6kSxGTALROVx734XjRfR60F8TQyR2Q7qKGGlce7a9MD4yo9QKhNJ+AtRdUXFV9j2B2+NzXaT0tlav7iFb88UEV6F1MbvoFIgbVvh49C0ZOl9I3bcO8ZVTJ7QlJatmiF/TyW3yxkbPRIwzujVA+PiwoYXUV+qLNDBp7/u3Ct6EtCWcsKBg6EMjJK9PiXaklbxOQhO7MGj9pI5UpJDnsJpbxIs+h5nZQIk0A/cKbHjGHngtLYmEONtiJGadG2dr+UCPMmf7kkH5jgiDovoOE2UUwFbR/GYWGXpIPtorsfM7i1EVs/QvBjGLYxqHyMgMOYIckPhivHWCC8Pk7uM4CbVM8wvlquDhsUyYiCUNf7+/PLq03XDxiKy3E/vrr/BdDgrpTo3+F0cnFdNbMCaDcB7uV8Fh8sOOprn6eYBc+19bCVe1NyqIwRzIBvIvWEdISIWrbafGdXS1wkF0RSHNYbHfx0u86ddEkDl54X6xvVPLNnPmyPCxq/cNZ1MKzcF8rA5Ifs7I+RTTC434eUO4IfC9RJx9l7kNm35zqtVYKCpjN9/ruLMbUP9FlkELzoSmJ8I/E4B2sQeV46jb3X32MV9Eo9ETMd8u1m/DIpRcOqeqir3AQN8j2b7gq0oiu948lnilwdx/0Q2oVM2z8dquSdlFZxHxHwg5XJXwrRpq/1roEjTVN4c0+EF8J7S5MpL/AER687m9a07aHNQEtClhq5v+JucUJYarirmS/GV/yJVApbjsqXFSQHJIg3hHDEYTpDyy0vyt0p/SToauJ2++Ge9SNp6fKcaZOLjpNz0MX9LEyHM1ls1N2VNiGRDulMXFzn01Ara4l1tsEisk4Ua0kf+nvXne15OpJgsr2IyezP2Dg88ImV/OtLZnAgRjv8o3XTcUorTZNGYwWHXCqiZlTTU6d3kpDz5a48BU7t0aGcdvgf+EZxKngUQvyWmSC9fuuTiCYblbRZAllN7eTCr4ikmqyNcV67UgRjcPBNOTAuCgiD9g4EMBthhvpeyhqovtAVpy0IwHfbE0wOD9OjMKYYIeRY/SfDMpF/i9nvLs6oiW2kllC62hS+7aoZch9g35rU/6kvfh03Hlb/Wf4o10ghDJNqY/cWwD4GLKm8cW4ddQVnj3h1ebNCTfc2HTvW2W1hjK3polWgiAPzKxEa28M9NI4wMWIwlezpt5A3pM+qHYaLyfrrVDG1ukyB3as3GCx+6r/UogEesd2+OJs5Nq0UYdGOICe19THfI+piXT52eaVpL6G2NZTR6ozVxtvBmN5ynuwm8sftjS3PA0CylJEenekcHcQp8TBvz/vkJIhF3F2R9tzTqSjCJQ4RCWwlh3/8HUhPys+FGWJt/lWzzTj113xpKToJxYBm8PQHeCw0Y3w3O9Zr7qWE6j8ARW8DS07rd1v/90VD2merUJgYSBmBDLY6s3vSxRrVkM2NVX0s1jDJJQG85Fk/5Lz0lKbzy2Ocr7UPY09hw2l++vwEepL6jyPulDP0bCb/qt1uBauWnZpDF2cAMflIF1XygTcXew0XaEKcY404coXRmt1gggoe3DgagjLfPPng8PdGPSpuDcKio22bQs19GueKPEsS7hLrGX1p61wk/9gc8IvnOT9hH9bgFIS3SiKoRINfKCeHwW5LPp7YTmuQwiSwzyxoK4VbObFrG0q/3u1fjRLmO3KKt6cPUcAKvmL2FID6M3NQxbgji8zVUCY0Ubs8xIsEZC9Rb7YRcfnEqTg62C8jlaxQPFFal2lrUChFmNwMm8J6IMQgtAozVy4L8LqnrehSEC1PcOXWjSQzyTfUBo5oSQzEhJRwchw+JdSmWbQKUUkVAxrWzQ8yZ0G34os+F/W2QKJEL5H2K6Jb3Qu5gEGc3pcJbxtZL2G36oO641O7o3nE+wefBklcrQN3ivgpagK7bwVbhpC0mJir43/NSvuT7CnRZXfJyu/eprmEzYpZaS8lrQX7byW/lYy2becMF4h8+D618yyf45xzK/b3qv6r1M2+aY/g27RElOQVZbKYzeKmaVFAJ5vOF05UDSGtnoJ/U4oiTzZoo59U0Avq8tXQUB7zeN/i8EYJeGyNovNjlojxk902m54F1jXyxz0YcxD6POSQkBvk9yG0UlfNS8BuGB4X4KuUxBQGVAsTclIvTXtLkDwOZ9vCEFsCx7k4TkAZUaBCYHPyhGKtkHyt6Bx5cCVCi44HYzdcA+RIrmK8Owxd8/ovtY4yDaZV0W4wm1h8X9TKq4nvLWDOOur2aQdjBjrjp3ofKAeipOlc+oLyXBdPizSVUMb7VNpbc6vQEzH6gz48ANWIMihaInl5VlRD25H7dGBXUmMbEcElaSASu6k37psGqwKiwj7Yle4/nnZEBaHD79UFK/EeXHDKytKUz2qQ3u24l0KNVbP2BwbMK629FA9Aw5AbqCvL34bUnjI1Xw+653KQcNCab/ytsfjpYcyWtloMRwIrgPr5rhh8IKig9xcszNk2UtT3qHafKA==" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="B3789BE2" />
+</div>
+	<input type="hidden" name="utcOffset" id="utcOffset" value="0" />
+	<table border="0" style="margin-left: auto; margin-right: auto; border-style: none">
+		<tr>
+			<td>
+				<a id="ctl00_hyperlinkLogo" href="./?lat=0&amp;lng=0&amp;loc=Unspecified&amp;alt=0&amp;tz=UCT" style="display:inline-block;border-style:None;"><img src="//www.heavens-above.com/images/LogoNew.png" alt="" style="border-width:0px;" /></a>
+			</td>
+			<td>
+				
+					<script type = "text/javascript" > <!--
+google_ad_client = "ca-pub-5668297076217155";
+google_ad_slot = "5479771053";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type = "text/javascript" src="//pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+
+				
+			</td>
+			<td>
+				<table class="userTable">
+					<tr>
+						<td>
+							User:
+						</td>
+						<td>
+							anonymous&nbsp;&nbsp;&nbsp;<a href="/login.aspx">Login</a>
+						</td>
+					</tr>
+					<tr class="lightrow">
+						<td>
+							Location:
+						</td>
+						<td>
+							<a id="ctl00_linkObservationSite" href="SelectLocation.aspx?lat=0&amp;lng=0&amp;loc=Unspecified&amp;alt=0&amp;tz=UCT">Unspecified</a>
+							
+						</td>
+					</tr>
+					<tr class="lightrow">
+						<td colspan="2" align="center">
+							(<a id="ctl00_linkLatLong" href="SelectLocation.aspx?lat=0&amp;lng=0&amp;loc=Unspecified&amp;alt=0&amp;tz=UCT">0.0000�N, 0.0000�E</a>)
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Time:
+						</td>
+						<td>
+							<span id="spanTime">
+								02:10:45</span>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center">
+							(UTC<span id="ctl00_lblTZ">+00:00</span>)
+						</td>
+					</tr>
+					<tr class="lightrow">
+						<td>
+							Language:
+						</td>
+						<td>
+							<select name="ctl00$ddlCulture" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ddlCulture\&#39;,\&#39;\&#39;)&#39;, 0)" id="ctl00_ddlCulture">
+	<option value="ar">'D91(J)</option>
+	<option value="ca">Catal&#224;</option>
+	<option value="cs">eatina</option>
+	<option value="da">Dansk</option>
+	<option value="de">Deutsch</option>
+	<option value="el">��������</option>
+	<option selected="selected" value="en">English</option>
+	<option value="eo">Esperanto</option>
+	<option value="es">Espa&#241;ol</option>
+	<option value="eu">Euskara</option>
+	<option value="fi">Suomi</option>
+	<option value="fr">Fran&#231;ais</option>
+	<option value="gl">Galego</option>
+	<option value="he">�����</option>
+	<option value="hr">Hrvatski</option>
+	<option value="hu">Magyar</option>
+	<option value="it">Italiano</option>
+	<option value="ja">�,�</option>
+	<option value="lt">Lietuvis</option>
+	<option value="nl">Nederlands</option>
+	<option value="pl">Polski</option>
+	<option value="pt">Portugu&#234;s brasileiro</option>
+	<option value="pt-PT">Portugu&#234;s de Portugal</option>
+	<option value="ro">Rom&#226;n</option>
+	<option value="ru"> CAA:89</option>
+	<option value="sk">Sloven
+ina</option>
+	<option value="sl">Slovena
+ina</option>
+	<option value="sv">Svenska</option>
+	<option value="ta">�����</option>
+	<option value="th">D"</option>
+	<option value="tr">T&#252;rk&#231;e</option>
+	<option value="uk">#:@0W=AL:0</option>
+	<option value="zh">�S-�</option>
+	<option value="zh-CHT">A�-�</option>
+
+</select>
+						</td>
+					</tr>
+					
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				<hr />
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" valign="top">
+				<table width="100%">
+					<tr>
+						<td align="left">
+							<span id="ctl00_lblTitle" class="pagehead">Starlink - dynamic 3D orbit display</span>
+						</td>
+						<td align="right" class="navbar">
+							
+							<span id="ctl00_lblNavBar"><a href="/?lat=0&lng=0&loc=Unspecified&alt=0&tz=UCT" title="Go to home page">Home</a></span>
+						</td>
+					</tr>
+				</table>
+				<p />
+				
+    <label for="launches">Launch:</label>
+    <select id="launches" onchange="onLaunchChanged(this.value)">
+        <option selected value="0">all</option><option value="2021999">Starlink L17, 03 March 2021 00:53 UTC</option><option value="2021012">Starlink L19, 16 February 2021 03:59 UTC</option><option value="2021009">Starlink L18, 04 February 2021 06:19 UTC</option><option value="2021006">Starlink Tr-1, 24 January 2021 15:00 UTC</option><option value="2021005">Starlink L16, 20 January 2021 13:02 UTC</option><option value="2020088">Starlink L15, 25 November 2020 02:13 UTC</option><option value="2020074">Starlink L14, 24 October 2020 15:31 UTC</option><option value="2020073">Starlink L13, 18 October 2020 12:26 UTC</option><option value="2020070">Starlink L12, 06 October 2020 11:30 UTC</option><option value="2020062">Starlink L11, 03 September 2020 12:46 UTC</option><option value="2020057">Starlink L10, 18 August 2020 14:31 UTC</option><option value="2020055">Starlink L9, 07 August 2020 05:12 UTC</option><option value="2020038">Starlink L8, 13 June 2020 09:21 UTC</option><option value="2020035">Starlink L7, 04 June 2020 01:25 UTC</option><option value="2020025">Starlink L6, 22 April 2020 19:30 UTC</option><option value="2020019">Starlink L5, 18 March 2020 12:16 UTC</option><option value="2020012">Starlink L4, 17 February 2020 15:06 UTC</option><option value="2020006">Starlink L3, 29 January 2020 14:07 UTC</option><option value="2020001">Starlink L2, 07 January 2020 02:19 UTC</option><option value="2019074">Starlink L1, 11 November 2019 14:56 UTC</option><option value="2019029">Starlink 0, 24 May 2019 02:30 UTC</option>
+    </select>
+    &nbsp;&nbsp;&nbsp;&nbsp;Time controls
+    <button onclick="setRealTimeMode()" id="btnRT" type="button" title="use current time">&gt;|&lt;</button>
+    <button onclick="pause()" id="btnPause" type="button" title="pause">||</button>
+    <button onclick="setAnimationSpeed(20)" id="btnFast1" type="button" title="fast forward 1">&gt;</button>
+    <button onclick="setAnimationSpeed(50)" id="btnFast2" type="button" title="fast forward 2">&gt;&gt;</button>
+    <button onclick="setAnimationSpeed(150)" id="btnFast3" type="button" title="fast forward 3">&gt;&gt;&gt;</button>
+     &nbsp;&nbsp;&nbsp;&nbsp;Time: <span id="time"></span>
+
+    <div style="width: 850px; height: 850px; padding: 0; margin: 0; position: relative;" id="mydiv">
+        <div id="info" style="position: absolute; top: 0px; left: 5px; width: 300px; color: yellow; font-family: Arial; font-size: small">
+            Selected Satellite: <span id="satid"></span>
+            <br />
+            COSPAR ID: <span id="cospar"></span>
+            <br />
+            Orbit: <span id="orbit"></span>
+        </div>
+    </div>
+
+				&nbsp;
+				<p />
+				<table style="border-top: 1px solid black;">
+					<tr>
+						<td valign="top" style="width: 100px">
+							<a href="https://twitter.com/heavensabovecom?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-show-screen-name="false" data-show-count="false">Follow @heavensabovecom</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+							<!--<a id="ctl00_linkDonate" title="Make a donation to help with the running costs of Heavens-Above" href="Donate2.aspx"><img title="Make a donation to help with the running costs of Heavens-Above" src="//www.heavens-above.com/images/btn_donate_SM.gif" alt="" style="border-width:0px;" /></a>-->
+						</td>
+						<td valign="top">
+							<div class="footer">
+								Developed and maintained by <a href="mailto:Chris.Peat@heavens-above.com">Chris Peat</a>, Heavens-Above GmbH. Please read the <a href="faq.aspx">FAQ</a> before sending e-mail. <a href="Imprint.aspx">Imprint</a>.
+								</div>
+						</td>
+						<td>
+							<a href="http://www.dlr.de/rb/en/" target="_blank">
+								<img src="//www.heavens-above.com/images/dlrhost.gif" align="left" border="0" alt="DLR" /></a>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td rowspan="1" valign="top">
+				<p />
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle" style="display: inline-block; width: 336px; height: 280px" data-ad-client="ca-pub-5668297076217155" data-ad-slot="7480853211"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+					<p />
+					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle" style="display: inline-block; width: 336px; height: 280px" data-ad-client="ca-pub-5668297076217155" data-ad-slot="7480853211"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+			</td>
+		</tr>
+	</table>
+	</form>
+    <script src="//tags.onscroll.com/608ff96c-526d-43c0-92d3-5faa546bc80e/tag.min.js" async defer></script>
+</body>
+</html> 
