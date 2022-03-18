@@ -87,7 +87,7 @@
   div.content_section {
     margin: 3px 3px 3px 3px;
 
-    background-color: #FFFFFF;
+    background-color: #000000;
 
     text-align: left;
   }
@@ -165,7 +165,7 @@
   div.content_section_text a:link,
   div.content_section_text a:visited,
    div.content_section_text a:active {
-    background-color: #000000;
+    background-color: #DCDFE6;
 
     color: #000000;
   }
