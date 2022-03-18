@@ -148,13 +148,12 @@
   div.content_section_text a {
     text-decoration: none;
     font-weight: bold;
-    color: blue;
   }
 
   div.table_of_contents_item a:link,
   div.table_of_contents_item a:visited,
   div.table_of_contents_item a:active {
-    color: blue;
+    color: #000000;
   }
 
   div.table_of_contents_item a:hover {
@@ -175,6 +174,10 @@
     background-color: #000000;
 
     color: #DCDFE6;
+  }
+
+  h6 {
+    color: #0011ff;
   }
 
   /*div.validator {
