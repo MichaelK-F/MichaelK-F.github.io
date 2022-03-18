@@ -176,8 +176,11 @@
     color: #DCDFE6;
   }
 
-  :root {
-    color-scheme: light dark; /* both supported */
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: black;
+      color: white;
+    }
   }
 
   /*div.validator {
