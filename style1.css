@@ -154,7 +154,7 @@
   div.table_of_contents_item a:link,
   div.table_of_contents_item a:visited,
   div.table_of_contents_item a:active {
-    color: #000000;
+    color: blue;
   }
 
   div.table_of_contents_item a:hover {
@@ -177,5 +177,5 @@
     color: #DCDFE6;
   }
 
-  div.validator {
-  }
+  /*div.validator {
+  }*/
