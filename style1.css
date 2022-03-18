@@ -74,9 +74,9 @@
 
     margin: 4px 0px 0px 0px;
 
-    background-color: #FFFFFF;
+    background-color: #000000;
 
-    color: #000000;
+    color: #FFFFFF;
     text-align: left;
   }
 
@@ -95,7 +95,7 @@
   div.content_section_text {
     padding: 4px 8px 4px 8px;
 
-    color: #000000;
+    color: #FFFFFF;
     font-size: 100%;
   }
 
@@ -125,7 +125,7 @@
 
     background-color: #8E9CB2;
 
-    color: #FFFFFF;
+    color: #000000;
     font-weight: bold;
     font-size: 112%;
     text-align: center;
@@ -176,12 +176,6 @@
     color: #DCDFE6;
   }
 
-  @media (prefers-color-scheme: dark) {
-    body {
-      background-color: black;
-      color: white;
-    }
-  }
 
   #darkmd {
     color: #000000;
