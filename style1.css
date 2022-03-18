@@ -176,6 +176,9 @@
     color: #DCDFE6;
   }
 
+  :root {
+    color-scheme: light dark; /* both supported */
+  }
 
   /*div.validator {
   }*/
