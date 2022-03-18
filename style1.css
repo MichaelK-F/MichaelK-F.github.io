@@ -148,6 +148,7 @@
   div.content_section_text a {
     text-decoration: none;
     font-weight: bold;
+    color: blue;
   }
 
   div.table_of_contents_item a:link,
