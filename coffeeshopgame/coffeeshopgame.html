@@ -1,19 +1,19 @@
 <html>
     <head>
-        <script src="path/to/ruffle/ruffle.js"></script>
+        <script src="/ruffle.js"></script>
     </head>
     <body>
-        <script>
-            window.RufflePlayer = window.RufflePlayer || {};
-
-            window.addEventListener("DOMContentLoaded", () => {
-                let ruffle = window.RufflePlayer.newest();
-                let player = ruffle.createPlayer();
-                let container = document.getElementById("container");
-                container.appendChild(player);
-                player.load("coffeeshopgame.swf");
-            });
-        </script>
-        <script src="/ruffle.js"></script>
+        <XMP>
+           <table width="100%" class="ex" cellspacing="0" border="1"> 
+             <tr> 
+              <td>
+                <object width="auto" height="auto">
+                   <param name="movie" value="somefilename.swf">
+                   <embed src="somefilename.swf" width="550" height="400"></embed>
+                </object>
+              </td> 
+             </tr>
+           </table> 
+        </XMP>
     </body>
 </html>
