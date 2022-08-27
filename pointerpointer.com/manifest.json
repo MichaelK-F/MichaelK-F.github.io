@@ -1,0 +1,20 @@
+{
+  "short_name": "Pointer Pointer",
+  "name": "Pointer Pointer",
+  "icons": [
+    {
+      "src": "cursor.png",
+      "type": "image/png",
+      "sizes": "44x30"
+    },
+    {
+      "src": "like3.jpg",
+      "type": "image/jpg",
+      "sizes": "200x200"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#000000"
+}
