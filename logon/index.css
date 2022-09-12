@@ -1,17 +1,20 @@
-.bg-image {
-    /* The image used */
+.container {
+    position: relative;
     background-image: url("background.jpg");
-    
-    /* Add the blur effect */
-    filter: blur(8px);
-    -webkit-filter: blur(8px);
-    
-    /* Full height */
-    height: 100%; 
-    
-    /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-  }
-  
+    height: 100%;
+    width: 100%;
+
+    }
+    .blur {
+    text-align: center;
+    
+    width: 100%;
+    backdrop-filter: blur(5px); /* blur effect to the backdrop */
+    background-color: rgba(255, 255, 255, 0.2);
+    font-size: 30px;
+    height: 100%;
+    width: 100%;
+    }
