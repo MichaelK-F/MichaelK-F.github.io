@@ -1,0 +1,131 @@
+//Variables
+$mobile-width: 330px;
+$tablet-width: 450px;
+
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700");
+
+//Mixins
+@mixin vertical-centering {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+//Mixins - Media query
+@mixin mobile {
+  @media(min-width: #{$mobile-width}) and (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+//Animation
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes descend {
+  from {
+    top: 45%;
+  }
+  to {
+    top: 50%;
+  }
+}
+
+#login-page-container {
+  width: 100%;
+  height: 600px;
+  background-image: url("http://res.cloudinary.com/mmdirir94/image/upload/v1519167949/architecture-3121009_960_720_lix21u.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-size: 16px;
+  color: white;
+  #login-page-inner {
+    width: 400px;
+    position: relative;
+    @include vertical-centering;
+    margin: 0 auto;
+    animation: fadeIn 1s ease-in-out, descend 0.5s ease-in-out;
+    #user-image-container,
+    #username-container,
+    #input-container {
+      text-align: center;
+    }
+    #user-image-container {
+      margin: 0 auto;
+      width: 140px;
+      height: 140px;
+      font-size: 110%;
+      border-radius: 100%;
+      background-color: rgba(255, 255, 255, 0.5);
+      .fa-user-o {
+        line-height: 140px;
+        color: white;
+      }
+    }
+    #username-container {
+      margin-bottom: 40px;
+      margin-top: 20px;
+      font-family: "Roboto";
+      font-size: 105%;
+      color: white;
+    }
+    #input-container {
+      height: 50px;
+      #password {
+        margin: 0 auto;
+        height: 25px;
+        width: 300px;
+        padding-left: 5px;
+      }
+      #submit {
+        height: 31px;
+        padding: 0 10px;
+        position: relative;
+        right: 5px;
+        background-color: #bdbdbd;
+        border: none;
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+        cursor: pointer;
+        .fa-arrow-right {
+          line-height: 28px;
+          color: white;
+        }
+        &:hover {
+          background-color: #9e9e9e;
+        }
+      }
+    }
+  }
+}
+
+@include mobile {
+  #login-page-container {
+    font-size: 12px !important;
+  }
+  #login-page-inner {
+    width: 300px !important;
+  }
+  #user-image-container {
+    width: 110px !important;
+    height: 110px !important;
+  }
+  .fa-user-o {    
+    line-height: 110px !important; 
+  }
+  #password {
+    width: 200px !important;
+  }
+}
