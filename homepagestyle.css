@@ -32,6 +32,16 @@ body {
     height: 100%;
 }
 
+#main {
+    z-index: 0;
+    position: relative;
+    top: 76px;
+    left: 180px;
+    padding: 5px;
+    margin: 0;
+    width: 1200;
+}
+
 a {
     color: white;
 }
