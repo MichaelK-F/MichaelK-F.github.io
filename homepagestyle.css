@@ -1,6 +1,6 @@
 body {
     font-family: 'Inter', Arial;
-    background-color: lightgrey;
+    background-color: darkgrey;
 }
 
 #top {
@@ -41,7 +41,7 @@ body {
     padding: 5px;
     margin: 0;
     width: 1200px;
-    background-color: lightgrey;
+    background-color: darkgrey;
 }
 
 a {
