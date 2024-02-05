@@ -1,0 +1,206 @@
+@font-face {
+  font-family: 'ComicNeue';
+  src: 
+    url('../fonts/ComicNeue-Angular-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Oblique';
+  src: 
+    url('../fonts/ComicNeue-Angular-Bold-Oblique.woff') format('woff');
+}
+
+.oblique {
+  font-family: 'Oblique';
+}
+.nav-fix {
+  background-color: whitesmoke;
+  opacity: 100%;
+}
+.containModel {
+  position: relative;
+  font-family: 'ComicNeue';
+  width: 760px;
+  height: 600px;
+  margin-bottom: 3%;
+}
+.bezel {
+  position: absolute;
+  z-index: 0;
+  max-width: 780px;
+}
+.menu, .heading {
+  position: absolute;
+  z-index: 5;
+  color: white;
+}
+.menu {
+  cursor: pointer;
+  z-index: 200;
+}
+.textHover {
+  color: white !important;
+}
+
+.heading {
+  position: relative;
+  text-align: center;
+  top: 4px;
+}
+.mainButtons {
+  position: absolute;
+  z-index: 10;
+  text-align: center;
+  vertical-align: middle;
+  color: #6bfb6b;
+}
+.mainButtons:hover{
+  color: white;
+}
+.selected {
+    box-shadow: 0px 5px 10px #000 inset;
+    -moz-box-shadow: 0px 5px 10px #000 inset;
+    -webkit-box-shadow: 0px 5px 10px #000 inset;
+}
+
+.return {
+  position: absolute;
+  font-family: 'Oblique';
+  color: #0f0;
+  z-index: 20;
+  top: -25%;
+  right: 4%;
+}
+.return:hover {
+  color: #fff;
+}
+.return2 {
+  position: absolute;
+  font-family: 'Oblique';
+  color: #0f0;
+  z-index: 25;
+  top: -25%;
+  right: 4%;
+}
+.return2:hover {
+  color: #fff;
+}
+.copyright {
+  position: absolute;
+  right: 3%;
+  top: 0px;
+  color: #0f0;
+}
+.copyright:hover {
+  color: #fff;
+}
+.copyrightSlide {
+  z-index: 99;
+}
+.overlay {
+  z-index: 30;
+}
+.containModel img {
+  position: absolute;
+  padding: 0;
+}
+
+#muteBtn {
+  position: absolute;
+  bottom: 1%;
+  right: 45%;
+}
+#unmuteBtn {
+  position: absolute;
+  bottom: 1%;
+  right: 45%;
+}
+#replayBtn {
+  position: absolute;
+  bottom: 0.8%;
+  right: 51%;
+  max-width: 30px;
+  cursor: pointer;
+}
+#replayBtnHover {
+  position: absolute;
+  bottom: 0.8%;
+  right: 51%;
+  max-width: 30px;
+}
+.master {
+  z-index: 40;
+}
+
+
+/*Slide Positioning*/
+.slides {
+  position: absolute;
+}
+.row1 {
+  top: 7.0692%;
+}
+.row2 {
+  top: 24.5099%;
+}
+.row3 {
+  top: 41.9506%;
+}
+.row4 {
+  top: 59.3913%;
+}
+.row5 {
+  top: 76.832%;
+}
+.column1 {
+  left: 4.3%
+}
+.column2 {
+  left: 27.5564%
+}
+.column3 {
+  left: 50.8128%
+}
+.column4 {
+  left: 74.25%
+}
+
+
+/*Flip card css*/
+/*.flipcard {
+  position: absolute;
+  width: 170px;
+  height: 104px;
+  perspective: 500px;
+}
+.flipcard.h.flip .front{
+  -ms-transform: rotateY(180deg); 
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+.flipcard.h.flip .back{
+  -ms-transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+  -o-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+}
+.flipcard.h .back{
+  -ms-transform: rotateY(-180deg);
+  -webkit-transform: rotateY(-180deg);
+  -moz-transform: rotateY(-180deg);
+  -o-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+}
+.flipcard .front, .flipcard .back
+{
+  position:absolute;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  transition: all 0.5s ease-in;
+  color: white;
+  background-color: #000;
+  backface-visibility: hidden;
+}*/

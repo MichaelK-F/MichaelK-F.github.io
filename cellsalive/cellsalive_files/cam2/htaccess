@@ -1,0 +1,8 @@
+Options +FollowSymlinks
+#
+### Prevent "hot linking" of image files from other sites code:
+RewriteEngine on
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^http://(www\.)?cellsalive.com/.*$ [NC]
+RewriteCond %{HTTP_REFERER} !^http://(www\.)?atomz.com/.*$ [NC]
+RewriteRule \.(gif|jpg|mov)$ http://www.cellsalive.com/hotlink_denied.gif [R,L]

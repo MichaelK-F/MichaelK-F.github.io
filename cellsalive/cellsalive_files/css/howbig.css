@@ -1,0 +1,176 @@
+@font-face {
+  font-family: 'ComicNeue';
+  src: 
+    url('../fonts/ComicNeue-Angular-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Oblique';
+  src: 
+    url('../fonts/ComicNeue-Angular-Bold-Oblique.woff') format('woff');
+}
+
+.oblique {
+	font-family: 'Oblique';
+}
+.containModel {
+	position: relative;
+	font-family: 'ComicNeue';
+	width: 760px;
+	height: 600px;
+	margin-bottom: 3%;
+}
+.bezel {
+	position: absolute;
+	z-index: 10;
+	max-width: 760px;
+}
+
+.menu, .heading {
+	position: absolute;
+	z-index: 20;
+	color: white;
+}
+.menu {
+	/*background: red;*/
+	cursor: pointer;
+	z-index: 30; 
+}
+.textHover {
+	color: white !important;
+}
+.slides {
+	position: absolute;
+	z-index: 15; 
+}
+.overlays {
+	position: absolute;
+	z-index: 17;
+}
+#copyright {
+	z-index: 18;
+}
+#copyrightBtn {
+	z-index: 89;
+	position: absolute;
+	top: 92%;
+	left: 78%;
+	color: white;
+	cursor: pointer;
+}
+#copyrightBtn:hover {
+	color: #0f0;
+}
+#return {
+	color: white;
+	z-index: 89;
+	position: absolute;
+	top: 77%;
+	left: 34%;
+	cursor: pointer;
+}
+#return:hover {
+	color: #0f0;
+}
+
+/*Control placement*/
+.controls {
+	position: absolute;
+	margin: 0;
+}
+.progress {
+	left: 75%;
+}
+/*.progress:hover {
+	color: white;
+}*/
+.menuText {
+	font-size: 1.2em;
+	color: #0cf;
+	margin: 0;
+}
+.menuText:hover {
+	color: white;	
+}
+.player {
+	bottom: 18.3%;
+}
+#arrow {
+	position: absolute;
+	left: 4.7%;
+	bottom: 2.3%
+}
+#stepBack {
+	left: 23.2%;
+}
+#stepForward {
+	left: 50%;
+}
+
+#muteBtn {
+	left: 6%;
+	z-index: 35;
+}
+#unmuteBtn {
+	left: 6%;
+	z-index: 34;
+}
+#humanHairText {
+	top: 6%;
+}
+#dustMiteText {
+	top: 13.33%;
+}
+#ragweedPollenText {
+	top: 20.67%;
+}
+#lymphocyteText {
+	top: 28%;
+}
+#redBloodCellsText {
+	top: 35.33%;
+}
+#bakersYeastText {
+	top: 42.67%;
+}
+#eColiText {
+	top: 50%;
+}
+#staphyiococcusText {
+	top: 57.33%;
+}
+#ebolaVirusText {
+	top: 64.67%;
+}
+#rhinovirusText {
+	top: 72%;
+}
+
+.numbers {
+	bottom: 11%;
+  	font-size: .85em;
+  	color: #0cf;
+}
+.numbers:hover {
+	color: white;
+}
+#number1 {
+	left: 6%
+}
+#number10 {
+	left: 15.7%
+}
+#number100 {
+	left: 25.5%
+}
+#number1000 {
+	left: 35%
+}
+#number10000 {
+	left: 44.5%
+}
+#number100000 {
+	left: 54%
+}
+#number1000000 {
+	left: 65%
+}

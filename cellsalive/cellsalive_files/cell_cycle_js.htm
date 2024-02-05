@@ -1,0 +1,88 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js ie6 oldie" lang="en"><![endif]-->
+<!--[if IE 7]><html class="no-js ie7 oldie" lang="en"><![endif]-->
+<!--[if IE 8]><html class="no-js ie8 oldie" lang="en"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../favicon.ico">
+    <title>Interactive Cell Cycle</title>
+    <!-- CSS for Cell Model Styling -->
+    <link rel="stylesheet" type="text/css" href="css/cell_cycle.css">
+    <!-- Included JavaScript files for Cell Model-->
+    <script type="text/javascript">
+        var percentOfScreen = .82 // The amount of screen the cell model covers.
+    </script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/soundkit.js"></script>
+    <script src="js/mapResize.js"></script>
+    <script src="js/cell_cycle.js"></script>
+    <style type="text/css">
+        .containModel {
+            margin-top: 2%;
+            margin-bottom: 3%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        a:link {
+            color: #00ff00;
+        }
+	body,td,th {
+	color: #ffffff;
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+    </style>
+
+</head>
+
+<body bgcolor="#2c2c2c" text="#00ccff" link="#00ff00" vlink="#ff0000" alink="#ff0000">
+ <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.htm"><img src="img/HomeButton.png" alt="CELLS alive!"></a>
+          </div>
+	
+
+    <h2 align="center"><a href="cell_cycle.htm">^ Cell Cycle Overview</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cell Cycle &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mitosis_js.htm">Mitosis &gt;</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="meiosis_js.htm">Meiosis &gt;</a></h2><h3 align="center"><br>
+    </h3>
+	
+    <!-- <div id="slideNumber">0</div>  <!-- Testing -->
+    <div class="containModel">
+        <!-- Setup Slides --><img class="img-responsive bezel" src="img/cell_cycle/bezel.png"> <img id="copyright" class="img-responsive slides explanation hide" src="img/cell_cycle/copyright.png"> <img id="background" class="img-responsive slides" src="img/cell_cycle/cycle.png"> <img id="arrow" class="img-responsive slides" src="img/cell_cycle/arrow_aligned.png">
+        <!-- Cell Slides --><img id="slide1" class="img-responsive slides cell hide" src="img/cell_cycle/cell/001_070.png"> <img id="slide50" class="img-responsive slides cell hide" src="img/cell_cycle/cell/050_099.png"> <img id="slide100" class="img-responsive slides cell hide" src="img/cell_cycle/cell/100.png"> <img id="slide101" class="img-responsive slides cell hide" src="img/cell_cycle/cell/101.png"> <img id="slide102" class="img-responsive slides cell hide" src="img/cell_cycle/cell/102.png"> <img id="slide103" class="img-responsive slides cell hide" src="img/cell_cycle/cell/103.png"> <img id="slide104" class="img-responsive slides cell hide" src="img/cell_cycle/cell/104.png"> <img id="slide105" class="img-responsive slides cell hide" src="img/cell_cycle/cell/105.png"> <img id="slide106" class="img-responsive slides cell hide" src="img/cell_cycle/cell/106.png"> <img id="slide107" class="img-responsive slides cell hide" src="img/cell_cycle/cell/107.png"> <img id="slide108" class="img-responsive slides cell hide" src="img/cell_cycle/cell/108.png"> <img id="slide109" class="img-responsive slides cell hide" src="img/cell_cycle/cell/109.png"> <img id="slide110" class="img-responsive slides cell hide" src="img/cell_cycle/cell/110.png"> <img id="slide111" class="img-responsive slides cell hide" src="img/cell_cycle/cell/111.png"> <img id="slide112" class="img-responsive slides cell hide" src="img/cell_cycle/cell/112.png"> <img id="slide113" class="img-responsive slides cell hide" src="img/cell_cycle/cell/113.png"> <img id="slide114" class="img-responsive slides cell hide" src="img/cell_cycle/cell/114.png"> <img id="slide115" class="img-responsive slides cell hide" src="img/cell_cycle/cell/115.png"> <img id="slide116" class="img-responsive slides cell hide" src="img/cell_cycle/cell/116.png"> <img id="slide117" class="img-responsive slides cell hide" src="img/cell_cycle/cell/117.png"> <img id="slide118" class="img-responsive slides cell hide" src="img/cell_cycle/cell/118.png"> <img id="slide119" class="img-responsive slides cell hide" src="img/cell_cycle/cell/119.png"> <img id="slide120" class="img-responsive slides cell hide" src="img/cell_cycle/cell/120.png">
+        <!-- Checkpoint Overlays --><img id="G1Checkpoint" alt="" class="img-responsive slides overlays hide" src="img/cell_cycle/checkpointOverlays/G1_Checkpoint.png"> <img id="G2Checkpoint" alt="" class="img-responsive slides overlays hide" src="img/cell_cycle/checkpointOverlays/G2_Checkpoint.png"> <img id="MCheckpoint" alt="" class="img-responsive slides overlays hide" src="img/cell_cycle/checkpointOverlays/M_Checkpoint.png">
+        <!-- Explaination Slides --><img id="G0" class="img-responsive slides explanation hide" src="img/cell_cycle/slides/G0.png"> <img id="G1" class="img-responsive slides explanation hide" src="img/cell_cycle/slides/G1.png"> <img id="G2" class="img-responsive slides explanation hide" src="img/cell_cycle/slides/G2.png"> <img id="interphase" class="img-responsive slides explanation hide" src="img/cell_cycle/slides/interphase.png"> <img id="mitosis" class="img-responsive slides explanation hide hide" src="img/cell_cycle/slides/mitosis.png"> <img id="S" class="img-responsive slides explanation hide" src="img/cell_cycle/slides/S.png">
+        <div class="heading">CELLS <span class="oblique">alive!</span> Interactive Cell Cycle</div>
+        <div id="copyrightBtn" onclick="stageSlide('#copyright')" class="oblique">&copy cellsalive.com</div>
+        <div id="return">RETURN to ANIMATION</div>
+        <div class="menu">
+            <!-- Controls -->
+            	<img id="pause" class="img-responsive controls player" src="img/mitosis/controls/pause.png"> 
+            	<img id="play" class="img-responsive controls player" src="img/mitosis/controls/play.png"> 
+            	<img id="rewind" class="img-responsive controls player" src="img/mitosis/controls/rewind.png">
+            	<img id="muteBtn" class="img-responsive controls player" src="img/audioOn.png">
+            	<img id="unmuteBtn" class="img-responsive controls player" src="img/audioOff.png">
+            <!-- Progress Controls -->
+            <p id="interphaseText" class="controls progress titleText" onclick="stageSlide('#interphase')">INTERPHASE</p>
+            <p id="gap0" class="controls progress subText" onclick="stageSlide('#G0')">Gap 0</p>
+            <p id="gap1" class="controls progress subText" onclick="stageSlide('#G1')">Gap 1</p>
+            <!-- <p id="g1Check" class="controls progress subText" onclick="stageText(30)">G<span class="sub">1</span> Checkpoint</p> -->
+            <p id="sPhase" class="controls progress subText" onclick="stageSlide('#S')">S Phase</p>
+            <p id="gap2" class="controls progress subText" onclick="stageSlide('#G2')">Gap 2</p>
+            <!-- <p id="g2Check" class="controls progress subText" onclick="stageText(100)">G<span class="sub">2</span> Checkpoint</p> -->
+            <p id="mitosisText" class="controls progress titleText" onclick="stageSlide('#mitosis')">MITOSIS</p>
+            <!-- <p id="mCheck" class="controls progress subText" onclick="stageText(108)">M Checkpoint</p> -->
+        </div>
+    </div>
+    <!-- End Container div -->
+    </div>
+
+</body>
+
+</html>

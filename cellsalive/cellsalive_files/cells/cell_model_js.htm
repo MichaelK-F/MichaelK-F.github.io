@@ -1,0 +1,156 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js ie6 oldie" lang="en"><![endif]-->
+<!--[if IE 7]><html class="no-js ie7 oldie" lang="en"><![endif]-->
+<!--[if IE 8]><html class="no-js ie8 oldie" lang="en"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../favicon.ico">
+    <title>Interactive Cell Model</title>
+    <!-- CSS for Cell Model Styling -->
+    <link rel="stylesheet" type="text/css" href="../css/cellModel.css">
+    <!-- Included JavaScript files for Cell Model-->
+    <script type="text/javascript">
+        var percentOfScreen = .82 // The amount of screen the cell model covers.
+    </script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/mapResize.js"></script>
+    <script src="../js/soundkit.js"></script>
+    <script src="../js/cellModelScript.js"></script>
+    <style type="text/css">
+        .containModel {
+            margin-top: 2%;
+            margin-bottom: 3%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        a:link {
+            color: #00ff00;
+        }
+        
+        body,
+        td,
+        th {
+            color: #ffffff;
+            font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+    </style>
+
+</head>
+
+<body bgcolor="#2c2c2c" text="#00ccff" link="#00ff00" vlink="#ff0000" alink="#ff0000">
+		 <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../index.htm"><img src="../img/HomeButton.png" alt="CELLS alive!"></a>
+          </div>
+    <h3 align="center"><a href="../cells/cell_model.htm">^ Cell Overview</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Eukaryote&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../cells/bactcell_js.htm">Bacteria Model &gt;</a><br><br>Get the <a href="../ppts.htm">Cell Model PowerPoints</a></h3>
+
+    <div class="containModel">
+        <!-- Basic Configuration Slides --><img class="img-responsive bezel" src="img/bezel.png"> <img class="img-responsive opener backgrounds" src="img/opener.png"> <img class="img-responsive plantCell hideStart backgrounds" src="img/plantCell.png"> <img class="img-responsive animalCell hideStart backgrounds" src="img/animalCell.png"> <img class="img-responsive plantCell hideStart backgrounds map" alt="" usemap="#plantMap" src="img/plantCellOverlay.png"> <img class="img-responsive animalCell hideStart backgrounds map" alt="" usemap="#animalMap" src="img/animalCellOverlay.png"> <img class="img-responsive copyrightSlide hideStart backgrounds" src="img/copyright.png">
+        <!-- End Basic Configuration Slides -->
+        <!-- Explanation Slides --><img class="img-responsive nucleolus hideStart backgrounds" src="img/nucleolus.png"> <img class="img-responsive nucleus hideStart backgrounds" src="img/nucleus.png"> <img class="img-responsive cytosol hideStart backgrounds" src="img/cytosol.png"> <img class="img-responsive centrosome hideStart backgrounds" src="img/centrosome.png"> <img class="img-responsive centriole hideStart backgrounds" src="img/centriole.png"> <img class="img-responsive golgi hideStart backgrounds" src="img/golgi.png"> <img class="img-responsive lysosomes hideStart backgrounds" src="img/lysosomes.png"> <img class="img-responsive peroxisomes hideStart backgrounds" src="img/peroxisomes.png"> <img class="img-responsive secretoryVesicles hideStart backgrounds" src="img/secretoryVesicles.png"> <img class="img-responsive membrane hideStart backgrounds" src="img/cellMembrane.png"> <img class="img-responsive mitochondrion hideStart backgrounds" src="img/mitochondrion.png"> <img class="img-responsive vacuole hideStart backgrounds" src="img/vacuole.png"> <img class="img-responsive cellWall hideStart backgrounds" src="img/cellWall.png"> <img class="img-responsive chloroplast hideStart backgrounds" src="img/chloroplast.png"> <img class="img-responsive chloroplastUhOh hideStart backgrounds" src="img/chloroplastUhOh.png"> <img class="img-responsive smoothER hideStart backgrounds" src="img/smoothER.png"> <img class="img-responsive roughER hideStart backgrounds" src="img/roughER.png"> <img class="img-responsive ribosomes hideStart backgrounds" src="img/ribosomes.png"> <img class="img-responsive cytoskeleton hideStart backgrounds" src="img/cytoskeleton.png"> <img class="img-responsive ACellNoCellWall hideStart backgrounds" src="img/ACellNoCellWall.png"> <img class="img-responsive PCellNoCentriole hideStart backgrounds" src="img/PCellNoCentriole.png">
+        <!-- End Explanation Slides -->
+        <!-- Overlays Animal Cell --><img class="img-responsive ACellcentrioleOverlay hideStart backgrounds overlay" src="img/ACellCentriole.png"> <img class="img-responsive ACellcentrosomeOverlay hideStart backgrounds overlay" src="img/ACellCentrosome.png"> <img class="img-responsive ACellcytoskeletonOverlay hideStart backgrounds overlay" src="img/ACellCytoskeleton.png"> <img class="img-responsive ACellcytosolOverlay hideStart backgrounds overlay" src="img/ACellCytosol.png"> <img class="img-responsive ACellgolgiOverlay hideStart backgrounds overlay" src="img/ACellGolgi.png"> <img class="img-responsive ACelllysosomeOverlay hideStart backgrounds overlay" src="img/ACellLysosome.png"> <img class="img-responsive ACellmembraneOverlay hideStart backgrounds overlay" src="img/ACellMembrane.png"> <img class="img-responsive ACellmitochondrionOverlay hideStart backgrounds overlay" src="img/ACellMitochondrion.png"> <img class="img-responsive ACellnucleolusOverlay hideStart backgrounds overlay" src="img/ACellNucleolus.png"> <img class="img-responsive ACellnucleusOverlay hideStart backgrounds overlay" src="img/ACellNucleus.png"> <img class="img-responsive ACellperoxisomesOverlay hideStart backgrounds overlay" src="img/ACellPeroxisomes.png"> <img class="img-responsive ACellribosomesOverlay hideStart backgrounds overlay" src="img/ACellRibosomes.png"> <img class="img-responsive ACellroughEROverlay hideStart backgrounds overlay" src="img/ACellRoughER.png"> <img class="img-responsive ACellsecretoryVesiclesOverlay hideStart backgrounds overlay" src="img/ACellSecVesicles.png"> <img class="img-responsive ACellsmoothEROverlay hideStart backgrounds overlay" src="img/ACellSmoothER.png"> <img class="img-responsive ACellvacuoleOverlay hideStart backgrounds overlay" src="img/ACellVacuole.png">
+        <!-- End Overlays Animal Cell -->
+        <!-- Overlays Plant Cell --><img class="img-responsive PCellmembraneOverlay hideStart backgrounds overlay" src="img/PCellCellMembrane.png"> <img class="img-responsive PCellcellWallOverlay hideStart backgrounds overlay" src="img/PCellCellWall.png"> <img class="img-responsive PCellcentrosomeOverlay hideStart backgrounds overlay" src="img/PCellCentrosome.png"> <img class="img-responsive PCellchloroplastsOverlay hideStart backgrounds overlay" src="img/PCellChloroplasts.png"> <img class="img-responsive PCellcytoskeletonOverlay hideStart backgrounds overlay" src="img/PCellCytoskeleton.png"> <img class="img-responsive PCellcytosolOverlay hideStart backgrounds overlay" src="img/PCellCytosol.png"> <img class="img-responsive PCellgolgiOverlay hideStart backgrounds overlay" src="img/PCellGolgi.png"> <img class="img-responsive PCelllysosomeOverlay hideStart backgrounds overlay" src="img/PCellLysosome.png"> <img class="img-responsive PCellmitochondrionOverlay hideStart backgrounds overlay" src="img/PCellMitochondrion.png"> <img class="img-responsive PCellnucleolusOverlay hideStart backgrounds overlay" src="img/PCellNucleolus.png"> <img class="img-responsive PCellnucleusOverlay hideStart backgrounds overlay" src="img/PCellNucleus.png"> <img class="img-responsive PCellperoxisomesOverlay hideStart backgrounds overlay" src="img/PCellPeroxisomes.png"> <img class="img-responsive PCellribosomesOverlay hideStart backgrounds overlay" src="img/PCellRibosomes.png"> <img class="img-responsive PCellroughEROverlay hideStart backgrounds overlay" src="img/PCellRoughER.png"> <img class="img-responsive PCellsecretoryVesiclesOverlay hideStart backgrounds overlay" src="img/PCellSecVesicles.png"> <img class="img-responsive PCellsmoothEROverlay hideStart backgrounds overlay" src="img/PCellSmoothER.png"> <img class="img-responsive PCellvacuoleOverlay hideStart backgrounds overlay" src="img/PCellVacuole.png">
+        <!-- End Overlays Plant Cell -->
+      <div class="heading"> CELLS <span class="oblique">alive!</span> Interactive Animal and Plant Cells </div>
+        <!-- MENU Code -->
+        <div class="menu">
+            <div class="animalButton mainButtons" onclick="animalCell()">Animal Cell </div>
+            <div class="plantButton mainButtons" onclick="plantCell()">Plant Cell </div>
+            <div class="copyright" onclick="partShow('copyrightSlide')">&copy cellsalive.com</div>
+            <div class="partOfCell">
+                <div class="column1 columns">
+                    <p id="nucleusText" onmouseover="hoverShow('nucleus')" onmouseout="clearOverlays()" onclick="partShow('nucleus')">Nucleus</p>
+                    <p id="nucleolusText" onmouseover="hoverShow('nucleolus')" onmouseout="clearOverlays()" onclick="partShow('nucleolus')">Nucleolus</p>
+                    <p id="cytosolText" onmouseover="hoverShow('cytosol')" onmouseout="clearOverlays()" onclick="partShow('cytosol')">Cytosol</p>
+                    <p id="centrosomeText" onmouseover="hoverShow('centrosome')" onmouseout="clearOverlays()" onclick="partShow('centrosome')">Centrosome</p>
+                    <p id="centrioleText" onmouseover="hoverShow('centriole')" onmouseout="clearOverlays()" onclick="centrioleShow('centriole')">Centriole</p>
+                </div>
+                <div class="column2 columns">
+                    <p id="golgiText" onmouseover="hoverShow('golgi')" onmouseout="clearOverlays()" onclick="partShow('golgi')">Golgi</p>
+                    <p id="lysosomeText" onmouseover="hoverShow('lysosome')" onmouseout="clearOverlays()" onclick="partShow('lysosomes')">Lysosome</p>
+                    <p id="peroxisomesText" onmouseover="hoverShow('peroxisomes')" onmouseout="clearOverlays()" onclick="partShow('peroxisomes')">Peroxisome</p>
+                    <p id="secretoryVesiclesText" onmouseover="hoverShow('secretoryVesicles')" onmouseout="clearOverlays()" onclick="partShow('secretoryVesicles')">Secretory Vesicle </p>
+                    <p id="membraneText" onmouseover="hoverShow('membrane')" onmouseout="clearOverlays()" onclick="partShow('membrane')">Cell Membrane</p>
+                </div>
+                <div class="column3 columns">
+                    <p></p>
+                    <p id="mitochondrionText" onmouseover="hoverShow('mitochondrion')" onmouseout="clearOverlays()" onclick="partShow('mitochondrion')">Mitochondrion</p>
+                    <p id="vacuoleText" onmouseover="hoverShow('vacuole')" onmouseout="clearOverlays()" onclick="partShow('vacuole')">Vacuole</p>
+                    <p id="cellWallText" onmouseover="hoverShow('cellWall')" onmouseout="clearOverlays()" onclick="cellWallShow('cellWall')">Cell Wall</p>
+                    <p id="chloroplastsText" onmouseover="hoverShow('chloroplasts')" onmouseout="clearOverlays()" onclick="chloroplastShow('chloroplasts')">Chloroplast</p>
+                </div>
+                <div class="column4 columns">
+                    <p></p>
+                    <p id="smoothERText" onmouseover="hoverShow('smoothER')" onmouseout="clearOverlays()" onclick="partShow('smoothER')">Smooth Endoplasmic Reticulum</p>
+                    <p id="roughERText" onmouseover="hoverShow('roughER')" onmouseout="clearOverlays()" onclick="partShow('roughER')">Rough Endoplasmic Reticulum</p>
+                    <p id="ribosomesText" onmouseover="hoverShow('ribosomes')" onmouseout="clearOverlays()" onclick="partShow('ribosomes')">Ribosomes</p>
+                    <p id="cytoskeletonText" onmouseover="hoverShow('cytoskeleton')" onmouseout="clearOverlays()" onclick="partShow('cytoskeleton')">Cytoskeleton</p>
+                </div>
+            </div>
+            <div class="return hideStart" onclick="partHide()">RETURN to CELL DIAGRAM </div> <img id="muteBtn" class="img-responsive controls player" src="../img/audioOnSm.png"> <img id="unmuteBtn" class="img-responsive controls player" src="../img/audioOffSm.png"> </div>
+        <!-- End Menu Code -->
+    </div>
+    <!-- End Container div -->
+    <!-- Image Maps -->
+    <map name="animalMap">
+        <area id="areaA1" shape="circle" coords="218, 181, 20" />
+        <area id="areaA2" shape="circle" coords="189, 248, 33" />
+        <area id="areaA3" shape="poly" coords="347, 123, 465, 99, 430, 52, 378, 56, 332, 66" />
+        <area id="areaA4" shape="poly" coords="368, 261, 406, 291, 435, 297, 467, 286, 488, 310, 442, 326, 393, 321, 353, 283" />
+        <area id="areaA5" shape="poly" coords="367, 174, 404, 155, 441, 150, 470, 153, 489, 116, 443, 101, 401, 104, 363, 123, 341, 151" />
+        <area id="areaA6" shape="circle" coords="260, 126, 19" />
+        <area id="areaA7" shape="rect" coords="141, 131, 201, 162" />
+        <area id="areaA8" shape="rect" coords="115, 181, 174, 215" />
+        <area id="areaA9" shape="circle" coords="319, 211, 35" />
+        <area id="areaA10" shape="circle" coords="345, 316, 28" />
+        <area id="areaA11" shape="poly" coords="293, 310, 347, 346, 303, 366, 273, 325" />
+        <area id="areaA12" shape="circle" coords="452, 221, 28" />
+        <area id="areaA13" shape="circle" coords="435, 218, 74" />
+        <area id="areaA14" shape="poly" coords="481, 154, 512, 190, 514, 239, 500, 279, 528, 272, 558, 231, 537, 153, 499, 124" />
+        <area id="areaA15" shape="poly" coords="287, 102, 290, 140, 334, 157, 332, 86" />
+        <area id="areaA16" shape="poly" coords="252, 250, 291, 252, 308, 231, 353, 257, 298, 291, 245, 280" />
+        <area id="areaA17" shape="poly" coords="281, 191, 305, 178, 325, 171, 301, 151, 269, 160, 235, 194, 254, 233, 283, 244, 293, 219" />
+        <area id="areaA18" shape="poly" coords="139, 245, 205, 293, 302, 313, 482, 306, 536, 284, 569, 233, 538, 132, 449, 86, 347, 70, 242, 103, 155, 157, 132, 185" />
+        <area id="areaA19" shape="poly" coords="142, 90, 209, 63, 277, 47, 315, 38, 408, 38, 472, 57, 537, 83, 581, 113, 602, 136, 622, 185, 618, 234, 608, 265, 587, 289, 518, 329, 497, 338, 390, 347, 321, 357, 273, 345, 245, 347, 188, 319, 153, 315, 109, 292, 78, 262, 70, 206, 82, 155, 111, 113" />
+        <area id="areaA20" shape="poly" coords="92, 289, 123, 309, 150, 323, 189, 329, 219, 342, 243, 354, 267, 354, 291, 357, 323, 364, 404, 355, 462, 352, 503, 346, 541, 327, 583, 300, 607, 282, 624, 249, 630, 186, 609, 133, 573, 93, 523, 65, 476, 45, 415, 27, 356, 24, 293, 28, 227, 46, 173, 59, 120, 89, 79, 138, 60, 201, 72, 268" /> </map>
+    <map name="plantMap">
+        <area id="areaP0" shape="poly" coords="611, 192, 608, 273, 633, 299, 653, 235, 629, 182" />
+        <area id="areaP1" shape="poly" coords="448, 73, 463, 131, 500, 109, 578, 113, 581, 81, 561, 63, 528, 52, 475, 58" />
+        <area id="areaP2" shape="poly" coords="479, 277, 523, 309, 560, 311, 590, 293, 606, 279, 622, 299, 579, 328, 522, 340, 470, 317" />
+        <area id="areaP3" shape="poly" coords="488, 170, 521, 159, 555, 155, 588, 171, 615, 191, 630, 158, 593, 125, 543, 115, 480, 124, 468, 142" />
+        <area id="areaP4" shape="circle" coords="454, 150, 16" />
+        <area id="areaP5" shape="circle" coords="448, 222, 21" />
+        <area id="areaP6" shape="poly" coords="658, 344, 628, 381, 636, 395, 646, 395, 671, 375, 677, 355" />
+        <area id="areaP7" shape="rect" coords="537, 371, 593, 393" />
+        <area id="areaP8" shape="circle" coords="623, 97, 23" />
+        <area id="areaP9" shape="circle" coords="481, 356, 28" />
+        <area id="areaP10" shape="circle" coords="437, 134, 13" />
+        <area id="areaP11" shape="poly" coords="425, 346, 455, 373, 491, 385, 469, 416, 438, 407, 405, 378, 408, 357" />
+        <area id="areaP12" shape="rect" coords="339, 21, 455, 63" />
+        <area id="areaP13" shape="rect" coords="170, 23, 294, 56" />
+        <area id="areaP14" shape="rect" coords="160, 365, 279, 402" />
+        <area id="areaP15" shape="rect" coords="43, 200, 71, 312" />
+        <area id="areaP16" shape="poly" coords="102, 78, 83, 161, 107, 248, 96, 335, 130, 356, 299, 353, 342, 340, 405, 301, 388, 103, 418, 80, 299, 61, 205, 73, 107, 54" />
+        <area id="areaP17" shape="circle" coords="560, 242, 28" />
+        <area id="areaP18" shape="circle" coords="545, 233, 74" />
+        <area id="areaP19" shape="circle" coords="447, 264, 23" />
+        <area id="areaP20" shape="circle" coords="440, 187, 26" />
+        <area id="areaP21" shape="poly" coords="84, 403, 613, 403, 645, 393, 672, 376, 677, 349, 674, 46, 634, 24, 67, 22, 43, 38, 30, 158, 30, 311, 38, 381" />
+        <area id="areaP22" shape="poly" coords="44, 23, 33, 45, 22, 171, 21, 267, 26, 363, 32, 389, 64, 406, 97, 411, 232, 412, 327, 414, 435, 413, 545, 413, 630, 411, 664, 396, 685, 380, 687, 281, 686, 147, 681, 42, 656, 23, 623, 13, 417, 12, 326, 12, 243, 13, 125, 13, 56, 12" />
+        <area id="areaP23" shape="rect" coords="13, 4, 700, 422" /> </map>
+    <!-- End Image Maps -->
+    </div>
+
+</body>
+
+</html>

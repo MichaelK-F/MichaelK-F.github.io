@@ -1,0 +1,181 @@
+@font-face {
+  font-family: 'ComicNeue';
+  src: 
+    url('../fonts/ComicNeue-Angular-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Oblique';
+  src: 
+    url('../fonts/ComicNeue-Angular-Bold-Oblique.woff') format('woff');
+}
+
+.oblique {
+	font-family: 'Oblique';
+}
+.nav-fix {
+	background-color: whitesmoke;
+	opacity: 100%;
+}
+.containModel {
+	position: relative;
+	font-family: 'ComicNeue';
+	width: 760px;
+	height: 600px;
+	margin-bottom: 3%;
+}
+.bezel {
+	position: absolute;
+	z-index: 0;
+	max-width: 760px;
+}
+
+.menu, .heading {
+	position: absolute;
+	z-index: 5;
+	color: white;
+}
+.menu {
+	/*background: red;*/
+	cursor: pointer;
+	z-index: 200;
+}
+.textHover {
+	color: white !important;
+}
+.map1 {
+	z-index: 100;
+}
+.map2 {
+	z-index: 105;
+}
+.heading {
+	position: relative;
+	text-align: center;
+	top: 4px;
+}
+.mainButtons {
+	position: absolute;
+	z-index: 10;
+	text-align: center;
+	vertical-align: middle;
+	color: #6bfb6b;
+}
+.mainButtons:hover{
+	color: white;
+}
+.selected {
+	/*background-color: #1d1d1d;*/
+    box-shadow: 0px 5px 10px #000 inset;
+    -moz-box-shadow: 0px 5px 10px #000 inset;
+    -webkit-box-shadow: 0px 5px 10px #000 inset;
+}
+.columns {
+	position: absolute;
+	bottom: 17%;
+}
+.column1 {
+	left: 5%;
+}
+.column2 {
+	left: 28%;
+}
+.column3 {
+	right: 28%;
+}
+.column4 {
+	right: 5%;
+}
+.columnEnv1 {
+	left: 5%;
+}
+.columnEnv2 {
+	left: 38%;
+}
+.columnEnv3 {
+	right: 5%;
+}
+.plantButton {
+left: 50%
+}
+.partOfCell {
+	color: #0b86d8;
+	margin-top: 2%;
+}
+.partOfCell p {
+	line-height: 1.3;
+	margin: 0;
+	font-size: 1.12em;
+	color: #0cf;
+}
+.menu2 p {
+	line-height: 1.5;
+}
+.menu2 .columns {
+	bottom: 23%;
+}
+.partOfCell p:hover {
+	color: white;
+}
+.return {
+	position: absolute;
+	font-family: 'Oblique';
+	color: #0f0;
+	z-index: 20;
+	top: -25%;
+	right: 4%;
+}
+.return:hover {
+	color: #fff;
+}
+.return2 {
+	position: absolute;
+	font-family: 'Oblique';
+	color: #0f0;
+	z-index: 25;
+	top: -25%;
+	right: 4%;
+}
+.return2:hover {
+	color: #fff;
+}
+.copyright {
+	position: absolute;
+	right: 3%;
+	top: 0px;
+	color: #0f0;
+}
+.copyright:hover {
+	color: #fff;
+}
+.copyrightSlide {
+	z-index: 99;
+}
+.overlay {
+	z-index: 30;
+}
+.containModel img {
+	position: absolute;
+}
+.bactSlides {
+	z-index: 18;s
+}
+.envelopeSlide {
+	z-index: 19;
+}
+.bacteriaLayout {
+	z-index: 6;
+}
+.envelopeLayout {
+	z-index: 7;
+}
+
+#muteBtn {
+	position: absolute;
+	top: 1%;
+	left: 5%;
+}
+#unmuteBtn {
+	position: absolute;
+	top: 1%;
+	left: 5%;
+}

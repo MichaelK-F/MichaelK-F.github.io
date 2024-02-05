@@ -1,0 +1,315 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js ie6 oldie" lang="en"><![endif]-->
+<!--[if IE 7]><html class="no-js ie7 oldie" lang="en"><![endif]-->
+<!--[if IE 8]><html class="no-js ie8 oldie" lang="en"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<head>
+		
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <title>Memory Match</title>
+    <!-- CSS for Cell Model Styling -->
+    <link rel="stylesheet" type="text/css" href="organelle_game.css">
+    <!-- Included JavaScript files for Cell Model-->
+    <script type="text/javascript">
+        var percentOfScreen = .82 // The amount of screen the cell model covers.
+    </script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/mapResize.js"></script>
+    <script src="../js/soundkit.js"></script>
+    <script src="organelle_game.js"></script>
+    <style type="text/css">
+        .containModel {
+            margin-top: 2%;
+            margin-bottom: 3%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        a:link {
+            color: #00ff00;
+        }
+		    body,td,th {
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #FFFFFF;
+}
+    </style>
+
+</head>
+<body bgcolor="#2c2c2c" link="#00ff00" vlink="#ff0000" alink="#ff0000">
+	
+	 <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../index.htm"><img src="../../img/HomeButton.png" alt="CELLS alive!"></a>
+          </div>
+    <h2 align="center"> <a href="../matchMitosis/index.htm">&lt; Mitosis</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../index.htm">^ Puzzle Index ^</a></h2>
+<p></p>
+    <div class="containModel">
+        <!-- Bezel and Controls -->
+        <img class="img-responsive bezel" src="img/bezel.png">
+        <img id="muteBtn" class="img-responsive controls player" src="../controls/audioOnSm.png">
+        <img id="unmuteBtn" class="img-responsive controls player" src="../controls/audioOffSm.png">
+        <img id="replayBtn" class="img-responsive controls player" src="../controls/replay.png" onclick="randomSlides()">
+
+    <!-- Master Slides -->
+
+        <!-- Row 1 layout -->
+        <div class="flipcard h row1 column1 slides">
+            <div class="front">
+              <img class="img-responsive slides master" src="img/masterTile.png">
+            </div>
+            <div class="back">
+              <img id="r1c1" class="img-responsive slides" src="img/a0.png">
+            </div>
+            <div class="match">
+              <img id="r1c1m" class="img-responsive slides" src="img/a0m.png">
+            </div>
+        </div>
+
+        <div class="flipcard h row1 column2 slides">
+            <div class="front">
+              <img class="img-responsive slides master" src="img/masterTile.png">
+            </div>
+            <div class="back">
+              <img id="r1c2" class="img-responsive slides" src="img/a1.png">
+            </div>
+            <div class="match">
+              <img id="r1c2m" class="img-responsive slides" src="img/a1m.png">
+            </div>
+        </div>
+
+        <div class="flipcard h row1 column3 slides">
+            <div class="front">
+              <img class="img-responsive slides master" src="img/masterTile.png">
+            </div>
+            <div class="back">
+              <img id="r1c3" class="img-responsive slides" src="img/a2.png">
+            </div>
+            <div class="match">
+              <img id="r1c3m" class="img-responsive slides" src="img/a2m.png">
+            </div>
+        </div>
+
+        <div class="flipcard h row1 column4 slides">
+            <div class="front">
+              <img class="img-responsive slides master" src="img/masterTile.png">
+            </div>
+            <div class="back">
+              <img id="r1c4" class="img-responsive slides" src="img/a3.png">
+            </div>
+            <div class="match">
+              <img id="r1c4m" class="img-responsive slides" src="img/a3m.png">
+            </div>
+        </div>
+
+        <!-- Row 2 layout -->
+        <div class="flipcard h row2 column1 slides">
+            <div class="front">
+              <img class="img-responsive slides master" src="img/masterTile.png">
+            </div>
+            <div class="back">
+              <img id="r2c1" class="img-responsive slides" src="img/a4.png">
+            </div>
+            <div class="match">
+              <img id="r2c1m" class="img-responsive slides" src="img/a4m.png">
+            </div>
+        </div>
+
+        <div class="flipcard h row2 column2 slides">
+            <div class="front">
+              <img class="img-responsive slides master" src="img/masterTile.png">
+            </div>
+            <div class="back">
+              <img id="r2c2" class="img-responsive slides" src="img/a5.png">
+            </div>
+            <div class="match">
+              <img id="r2c2m" class="img-responsive slides" src="img/a5m.png">
+            </div>
+        </div>
+
+        <div class="flipcard h row2 column3 slides">
+            <div class="front">
+              <img class="img-responsive slides master" src="img/masterTile.png">
+            </div>
+            <div class="back">
+              <img id="r2c3" class="img-responsive slides" src="img/a6.png">
+            </div>
+            <div class="match">
+              <img id="r2c3m" class="img-responsive slides" src="img/a6m.png">
+            </div>
+        </div>
+
+        <div class="flipcard h row2 column4 slides">
+            <div class="front">
+              <img class="img-responsive slides master" src="img/masterTile.png">
+            </div>
+            <div class="back">
+              <img id="r2c4" class="img-responsive slides" src="img/a7.png">
+            </div>
+            <div class="match">
+              <img id="r2c4m" class="img-responsive slides" src="img/a7m.png">
+            </div>
+        </div>
+
+        <!-- Row 3 layout -->
+        <div class="flipcard h row3 column1 slides">
+            <div class="front">
+              <img class="img-responsive slides master" src="img/masterTile.png">
+            </div>
+            <div class="back">
+              <img id="r3c1" class="img-responsive slides" src="img/a8.png">
+            </div>
+            <div class="match">
+              <img id="r3c1m" class="img-responsive slides" src="img/a8m.png">
+            </div>
+        </div>
+
+        <div class="flipcard h row3 column2 slides">
+            <div class="front">
+              <img class="img-responsive slides master" src="img/masterTile.png">
+            </div>
+            <div class="back">
+              <img id="r3c2" class="img-responsive slides" src="img/a9.png">
+            </div>
+            <div class="match">
+              <img id="r3c2m" class="img-responsive slides" src="img/a9m.png">
+            </div>
+        </div>
+
+        <div class="flipcard h row3 column3 slides">
+            <div class="front">
+              <img class="img-responsive slides master" src="img/masterTile.png">
+            </div>
+            <div class="back">
+              <img id="r3c3" class="img-responsive slides" src="img/q0.png">
+            </div>
+            <div class="match">
+              <img id="r3c3m" class="img-responsive slides" src="img/q0m.png">
+            </div>
+        </div>
+
+        <div class="flipcard h row3 column4 slides">
+            <div class="front">
+              <img class="img-responsive slides master" src="img/masterTile.png">
+            </div>
+            <div class="back">
+              <img id="r3c4" class="img-responsive slides" src="img/q1.png">
+            </div>
+            <div class="match">
+              <img id="r3c4m" class="img-responsive slides" src="img/q1m.png">
+            </div>
+        </div>
+
+        <!-- Row 4 layout -->
+        <div class="flipcard h row4 column1 slides">
+            <div class="front">
+              <img class="img-responsive slides master" src="img/masterTile.png">
+            </div>
+            <div class="back">
+              <img id="r4c1" class="img-responsive slides" src="img/q2.png">
+            </div>
+            <div class="match">
+              <img id="r4c1m" class="img-responsive slides" src="img/q2m.png">
+            </div>
+        </div>
+
+        <div class="flipcard h row4 column2 slides">
+            <div class="front">
+              <img class="img-responsive slides master" src="img/masterTile.png">
+            </div>
+            <div class="back">
+              <img id="r4c2" class="img-responsive slides" src="img/q3.png">
+            </div>
+            <div class="match">
+              <img id="r4c2m" class="img-responsive slides" src="img/q3m.png">
+            </div>
+        </div>
+
+        <div class="flipcard h row4 column3 slides">
+            <div class="front">
+              <img class="img-responsive slides master" src="img/masterTile.png">
+            </div>
+            <div class="back">
+              <img id="r4c3" class="img-responsive slides" src="img/q4.png">
+            </div>
+            <div class="match">
+              <img id="r4c3m" class="img-responsive slides" src="img/q4m.png">
+            </div>
+        </div>
+
+        <div class="flipcard h row4 column4 slides">
+            <div class="front">
+              <img class="img-responsive slides master" src="img/masterTile.png">
+            </div>
+            <div class="back">
+              <img id="r4c4" class="img-responsive slides" src="img/q5.png">
+            </div>
+            <div class="match">
+              <img id="r4c4m" class="img-responsive slides" src="img/q5m.png">
+            </div>
+        </div>
+
+        <!-- Row 5 layout -->
+        <div class="flipcard h row5 column1 slides">
+            <div class="front">
+              <img class="img-responsive slides master" src="img/masterTile.png">
+            </div>
+            <div class="back">
+              <img id="r5c1" class="img-responsive slides" src="img/q6.png">
+            </div>
+            <div class="match">
+              <img id="r5c1m" class="img-responsive slides" src="img/q6m.png">
+            </div>
+        </div>
+
+        <div class="flipcard h row5 column2 slides">
+            <div class="front">
+              <img class="img-responsive slides master" src="img/masterTile.png">
+            </div>
+            <div class="back">
+              <img id="r5c2" class="img-responsive slides" src="img/q7.png">
+            </div>
+            <div class="match">
+              <img id="r5c2m" class="img-responsive slides" src="img/q7m.png">
+            </div>
+        </div>
+
+        <div class="flipcard h row5 column3 slides">
+            <div class="front">
+              <img class="img-responsive slides master" src="img/masterTile.png">
+            </div>
+            <div class="back">
+              <img id="r5c3" class="img-responsive slides" src="img/q8.png">
+            </div>
+            <div class="match">
+              <img id="r5c3m" class="img-responsive slides" src="img/q8m.png">
+            </div>
+        </div>
+
+        <div id="test" class="flipcard h row5 column4 slides">
+            <div class="front">
+              <img class="img-responsive slides master" src="img/masterTile.png">
+            </div>
+            <div class="back">
+              <img id="r5c4" class="img-responsive slides" src="img/q9.png">
+            </div>
+            <div class="match">
+              <img id="r5c4m" class="img-responsive slides" src="img/q9m.png">
+            </div>
+
+        </div>
+
+
+    <p>&nbsp;</p>
+    </div>
+  <p>&nbsp;</p>
+	<script> 
+</div>
+<p>&nbsp;</p>
+
+</body>
+</html>

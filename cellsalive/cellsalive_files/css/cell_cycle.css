@@ -1,0 +1,163 @@
+@font-face {
+  font-family: 'ComicNeue';
+  src: 
+    url('../fonts/ComicNeue-Angular-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Oblique';
+  src: 
+    url('../fonts/ComicNeue-Angular-Bold-Oblique.woff') format('woff');
+}
+
+.oblique {
+	font-family: 'Oblique';
+}
+.containModel {
+	position: relative;
+	font-family: 'ComicNeue';
+	width: 760px;
+	height: 600px;
+	margin-bottom: 3%;
+}
+.bezel {
+	position: absolute;
+	z-index: 0;
+	max-width: 760px;
+}
+.heading {
+	position: relative;
+	text-align: center;
+	top: 4px;
+}
+
+.menu, .heading {
+	position: absolute;
+	z-index: 5;
+	color: white;
+}
+.menu {
+	/*background: red;*/
+	cursor: pointer;
+	z-index: 30; /*Above slides and bezel*/
+}
+#arrow {
+	z-index: 26;
+}
+.textHover {
+	color: white !important;
+}
+.slides {
+	position: absolute;
+	z-index: 20; /*Above bezel, but below menu overlay*/
+}
+.explanation {
+	z-index: 30;
+}
+.overlays {
+	z-index: 35;
+}
+.cell {
+	z-index: 25;
+}
+#copyright {
+	z-index: 30;
+}
+#copyrightBtn {
+	z-index: 89;
+	position: absolute;
+	top: 92%;
+	left: 78%;
+	color: white;
+	cursor: pointer;
+}
+#copyrightBtn:hover {
+	color: #0f0;
+}
+#return {
+	color: white;
+	z-index: 89;
+	position: absolute;
+	top: 77%;
+	left: 45%;
+	cursor: pointer;
+}
+#return:hover {
+	color: #0f0;
+}
+.sub {  /*subscript*/
+	font-size: .7em;
+}
+
+/*Control placement*/
+.controls {
+	position: absolute;
+}
+.progress {
+	left: 79%;
+	font-size: 1.2em;
+	color: #ff00ff;
+}
+.progress:hover {
+	color: white;
+}
+.player {
+	bottom: 5.5%;
+}
+#pause {
+	left: 24%;
+	z-index: 34;
+}
+#play {
+	left: 24%;
+	z-index: 35;
+}
+#rewind {
+	left: 36%;
+}
+#muteBtn {
+	left: 48%;
+}
+#unmuteBtn {
+	left: 48%;
+}
+.titleText {
+	left: 77%;
+}
+.subText {
+	left:  80%;
+}
+#interphaseText {
+	top: 9%;
+}
+#gap0 {
+	top: 19%;
+}
+#gap1 {
+	top: 29%;
+}
+#g1Check {
+	top: 30%;
+}
+#sPhase {
+	top: 39%;
+}
+#gap2 {
+	top: 49%;
+}
+#g2Check {
+	top: 52%;
+}
+#mitosisText {
+	top: 61%;
+}
+#mCheck {
+	top: 73%;
+}
+.highlight {
+	color: white;
+}
+
+#slideNumber {  /*Testing*/
+	text-align: center;
+	color: white
+}

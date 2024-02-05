@@ -1,0 +1,136 @@
+@font-face {
+  font-family: 'ComicNeue';
+  src: 
+    url('../fonts/ComicNeue-Angular-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Oblique';
+  src: 
+    url('../fonts/ComicNeue-Angular-Bold-Oblique.woff') format('woff');
+}
+
+.oblique {
+	font-family: 'Oblique';
+}
+.nav-fix {
+	background-color: whitesmoke;
+	opacity: 100%;
+}
+.containModel {
+	position: relative;
+	font-family: 'ComicNeue';
+	width: 760px;
+	height: 600px;
+	margin-bottom: 3%;
+}
+.bezel {
+	position: absolute;
+	z-index: 0;
+	max-width: 760px;
+}
+
+.menu, .heading {
+	position: absolute;
+	z-index: 5;
+	color: white;
+}
+.menu {
+	/*background: red;*/
+	cursor: pointer;
+}
+.textHover {
+	color: white;
+}
+.map {
+	z-index: 100;
+}
+.heading {
+	position: relative;
+	text-align: center;
+	top: 4px;
+}
+.mainButtons {
+	position: absolute;
+	z-index: 10;
+	text-align: center;
+	vertical-align: middle;
+	color: #6bfb6b;
+}
+.mainButtons:hover{
+	color: white;
+}
+.animalButton {
+	right: 50%;
+}
+.selected {
+	/*background-color: #1d1d1d;*/
+    box-shadow: 0px 5px 10px #000 inset;
+    -moz-box-shadow: 0px 5px 10px #000 inset;
+    -webkit-box-shadow: 0px 5px 10px #000 inset;
+}
+.columns {
+	position: absolute;
+	bottom: 10%;
+}
+.column1 {
+	left: 3%;
+}
+.column2 {
+	left: 22%;
+}
+.column3 {
+	right: 40%;
+}
+.column4 {
+	right: 3%;
+}
+.plantButton {
+left: 50%
+}
+.partOfCell {
+	color: #0b86d8;
+	margin-top: 2%;
+}
+.partOfCell p {
+	line-height: 1.2;
+	margin: 0;
+}
+.partOfCell p:hover {
+	color: white;
+}
+.return {
+	position: absolute;
+	font-family: 'Oblique';
+	color: #ff0000;
+	z-index: 20;
+	top: -25%;
+	right: 4%;
+}
+.copyright {
+	position: absolute;
+	right: 3%;
+	top: 0px;
+}
+.copyright:hover {
+	color: #6bfb6b;
+}
+.overlay {
+	z-index: 30;
+}
+#animalMap, #plantMap {
+	z-index: 100;
+}
+.containModel img {
+	position: absolute;
+}
+
+#muteBtn {
+	position: absolute;
+	top: 0;
+	left: 69.5%;
+}
+#unmuteBtn {
+	position: absolute;
+	top: 0;
+	left: 69.5%;
+}

@@ -1,0 +1,183 @@
+@font-face {
+  font-family: 'ComicNeue';
+  src: 
+    url('../fonts/ComicNeue-Angular-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Oblique';
+  src: 
+    url('../fonts/ComicNeue-Angular-Bold-Oblique.woff') format('woff');
+}
+
+.oblique {
+	font-family: 'Oblique';
+}
+.containModel {
+	position: relative;
+	font-family: 'ComicNeue';
+	width: 760px;
+	height: 600px;
+	margin-bottom: 3%;
+}
+.bezel {
+	position: absolute;
+	z-index: 10;
+	max-width: 760px;
+}
+.heading {
+	position: relative;
+	text-align: center;
+	top: 4px;
+}
+
+.menu, .heading {
+	position: absolute;
+	z-index: 20;
+	color: white;
+}
+.menu {
+	/*background: red;*/
+	cursor: pointer;
+	z-index: 30; 
+}
+.textHover {
+	color: white !important;
+}
+.slides {
+	position: absolute;
+	z-index: 15; 
+}
+.infoSlides {
+	position: absolute;
+	z-index: 17;
+}
+#copyright {
+	z-index: 18;
+}
+#copyrightBtn {
+	z-index: 89;
+	position: absolute;
+	top: 92%;
+	left: 78%;
+	color: white;
+	cursor: pointer;
+}
+#copyrightBtn:hover {
+	color: #0f0;
+}
+#return {
+	color: white;
+	z-index: 89;
+	position: absolute;
+	top: 77%;
+	left: 34%;
+	cursor: pointer;
+}
+#return:hover {
+	color: #0f0;
+}
+
+/*Control placement*/
+.controls {
+	position: absolute;
+	margin: 0;
+}
+.progress {
+	left: 70%;
+	width: 30%;
+	
+}
+/*.progress:hover {
+	color: white;
+}*/
+.menuText {
+	font-size: 1.2em;
+	color: #f0f;
+	margin: 0;
+}
+.menuText:hover {
+	color: white;	
+}
+.player {
+	bottom: 5.5%;
+}
+#blackBar {
+	position: absolute;
+	left: 67.7%;
+	top: 5.7%;
+}
+#ff {
+	left: 45%;
+}
+#pause {
+	left: 23.8%;
+	z-index: 34;
+}
+#play {
+	left: 23.8%;
+	z-index: 35;
+}
+#rewind {
+	left: 3%;
+}
+#stepBack {
+	left: 13.4%;
+}
+#stepForward {
+	left: 34.2%;
+}
+
+#muteBtn {
+	left: 55.5%;
+	z-index: 35;
+}
+#unmuteBtn {
+	left: 55.5%;
+	z-index: 34;
+}
+#diploidCell {
+	top: 6%;
+}
+#prophase1 {
+	top: 14.4%;
+}
+#metaphase1 {
+	top: 23.4%;
+}
+#anaphase1 {
+	top: 31%;
+}
+#telophase1 {
+	top: 39.4%;
+}
+#prophase2 {
+	top: 50.3%;
+}
+#metaphase2 {
+	top: 58.5%;
+}
+#anaphase2 {
+	top: 65.5%;
+}
+#telophase2 {
+	top: 72.2%;
+}
+#gamete {
+	top: 79.2%;
+}
+
+
+.info {
+	position: absolute;
+	top: 0%;
+	right: 6%;
+	display:block;
+	width: 29px;
+	height: 29px;
+ 	background:transparent url('../img/meiosis/info.png') center top no-repeat;
+ 	background-size: contain;
+}
+.info:hover {
+
+	background-image: url('../img/meiosis/infoRollover.png');
+}

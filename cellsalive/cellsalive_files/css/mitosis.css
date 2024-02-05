@@ -1,0 +1,149 @@
+@font-face {
+  font-family: 'ComicNeue';
+  src: 
+    url('../fonts/ComicNeue-Angular-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Oblique';
+  src: 
+    url('../fonts/ComicNeue-Angular-Bold-Oblique.woff') format('woff');
+}
+
+.oblique {
+	font-family: 'Oblique';
+}
+.containModel {
+	position: relative;
+	font-family: 'ComicNeue';
+	width: 760px;
+	height: 600px;
+	margin-bottom: 3%;
+}
+.bezel {
+	position: absolute;
+	z-index: 0;
+	max-width: 760px;
+}
+.heading {
+	position: relative;
+	text-align: center;
+	top: 4px;
+}
+
+.menu, .heading {
+	position: absolute;
+	z-index: 5;
+	color: white;
+}
+.menu {
+	/*background: red;*/
+	cursor: pointer;
+	z-index: 30; /*Above slides and bezel*/
+}
+.textHover {
+	color: white !important;
+}
+.slides {
+	position: absolute;
+	z-index: 20; /*Above bezel, but below menu overlay*/
+}
+#copyright {
+	z-index: 30;
+}
+#copyrightBtn {
+	z-index: 89;
+	position: absolute;
+	top: 72%;
+	left: 54%;
+	color: white;
+	cursor: pointer;
+}
+#copyrightBtn:hover {
+	color: #0f0;
+}
+#return {
+	color: white;
+	z-index: 89;
+	position: absolute;
+	top: 66%;
+	left: 45%;
+	cursor: pointer;
+}
+#return:hover {
+	color: #0f0;
+}
+
+/*Control placement*/
+.controls {
+	position: absolute;
+}
+.progress {
+	left: 79%;
+	font-size: 1.2em;
+	color: #0cf;
+}
+.progress:hover {
+	color: white;
+}
+.player {
+	bottom: 10%;
+}
+#arrow {
+	left: 75%;
+	top: 6%;
+}
+#ff {
+	left: 59%;
+}
+#pause {
+	left: 35%;
+	z-index: 34;
+}
+#play {
+	left: 35%;
+	z-index: 35;
+}
+#rewind {
+	left: 10%;
+}
+#stepBack {
+	left: 22.5%;
+}
+#stepForward {
+	left: 47%;
+}
+#Interphase1 {
+	top: 1%;
+}
+#Prophase {
+	top: 7.7%;
+}
+#Prometaphase {
+	top: 20%;
+}
+#Metaphase {
+	top: 29%;
+}
+#Anaphase {
+	top: 41.6%;
+}
+#Telophase {
+	top: 64.6%;
+}
+#Cytokinesis {
+	top: 75.7%;
+}
+#Interphase2 {
+	top: 83%;
+}
+
+#muteBtn {
+	position: absolute;
+	top: 72.5%;
+	left: 4%
+}
+#unmuteBtn {
+	position: absolute;
+	top: 72.5%;
+	left: 4%
+}

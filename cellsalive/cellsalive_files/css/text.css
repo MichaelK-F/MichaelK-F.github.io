@@ -1,0 +1,223 @@
+﻿body
+{
+	font: 16px/1.5 verdana, Geneva, Tahoma, sans-serif;
+}
+
+a{color:#00ff00;text-decoration:none}
+
+a:hover{color:#00ff00;text-decoration:underline}
+
+a:active{color:#00ff00;}
+
+a:visited {
+	color:#ff0000;
+}
+
+hr
+{
+	border-color: #ccc;
+	border-style: solid;
+	border-width: 1px 0 0;
+	clear: both;
+	height: 0;
+}
+
+/* =Headings
+--------------------------------------------------------------------------------*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color:#fff;
+}
+
+
+h1
+{
+	font-size: 25px;
+}
+
+h2
+{
+	font-size: 23px;
+}
+
+h3
+{
+	font-size: 21px;
+}
+
+h4
+{
+	font-size: 19px;
+}
+
+h5
+{
+	font-size: 17px;
+}
+
+h6
+{
+	font-size: 15px;
+}
+
+.alignFix 
+{
+max-width: 126px;
+}
+
+input {
+color: #000;
+}
+
+/* =Spacing
+--------------------------------------------------------------------------------*/
+
+ol
+{
+	list-style: decimal;
+}
+
+ul
+{
+	list-style: square;
+}
+
+p,
+dl,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ol,
+ul,
+pre,
+table,
+address,
+fieldset
+{
+	margin-bottom: 15px;
+}
+
+
+/*Code for the elements that replaced the tables on mitosis_REVISED.htm page*/
+
+.p-0 {
+	padding: 0px!important;
+}
+
+.start-animation .img-responsive {
+	float: none;
+	margin: 30px auto;
+}
+
+@media only screen and (max-width: 400px) {
+	.breadcrumb-links a {
+		font-size: 10px;
+	}
+	.breadcrumb-links h1 {
+		font-size: 11px;
+	}
+	.breadcrumb-links ul li {
+		padding-right: 0;
+	}
+}
+
+@media only screen and (min-width: 401px) and (max-width: 560px) {
+	.breadcrumb-links a {
+		font-size: 12px;
+	}
+	.breadcrumb-links h1 {
+		font-size: 16px;
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	.start-animation ul {
+		margin-bottom: 30px;
+		padding-left: 20px;
+	}
+	.start-animation h3 img {
+		width: 50px;
+	}
+}
+
+.anchor{
+  display: block;
+  position: relative;
+  top: -120px; /*same height as header*/
+  visibility: hidden;
+}
+
+/*Reseting bootstrap code*/
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8,
+ .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7,
+  .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6,
+   .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5,
+    .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    	padding-left: 15px;
+    	padding-right: 15px;
+    }
+
+/*Code for the sample page*/
+footer {
+	padding: 25px 0 15px 0;
+	background: #000;
+	border-top: 1px solid #ffff00;
+	border-bottom: 1px solid #ffff00;
+}
+footer p {
+	color: #ccc;
+}
+footer .list-inline > li {
+	padding: 0 15px;
+}
+
+@media only screen and (max-width: 767px) {
+	footer {
+		padding-top: 15px;
+	}
+	footer .list-inline > li {
+		display: block;
+		padding: 10px 0px;
+	}
+}
+
+
+/*Responsive video style*/
+.start-animation {
+	margin-bottom: 30px;
+}
+.start-animation video {
+	width: 100%!important;
+	max-width: 480px!important;
+	margin: 0 auto;
+	height: auto!important;
+	display: block;
+}
+
+@media only screen and (max-width: 767px) {
+	.start-animation video {
+		margin-bottom: 30px;
+	}
+}
+
+#lhmenu {
+  position: fixed;
+  left:0;
+  top:30%;
+  margin-top: -2.5em;
+  padding-left:10px;
+  padding-right:10px;
+  background-color:#000;
+  border-top: 1px solid #ffff00;
+  border-bottom: 1px solid #ffff00;
+  border-right: 1px solid #ffff00;
+}

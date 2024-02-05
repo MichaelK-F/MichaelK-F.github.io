@@ -1,0 +1,174 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js ie6 oldie" lang="en"><![endif]-->
+<!--[if IE 7]><html class="no-js ie7 oldie" lang="en"><![endif]-->
+<!--[if IE 8]><html class="no-js ie8 oldie" lang="en"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../favicon.ico">
+    <title>Interactive Bacteria Model</title>
+    <!-- CSS for Cell Model Styling -->
+    <link rel="stylesheet" type="text/css" href="../css/bacteriaCell.css">
+    <!-- Included JavaScript files for Cell Model-->
+    <script type="text/javascript">
+        var percentOfScreen = .82 // The amount of screen the cell model covers.
+    </script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/mapResize.js"></script>
+    <script src="../js/soundkit.js"></script>
+    <script src="../js/bacteriaCell.js"></script>
+    <style type="text/css">
+        .containModel {
+            margin-top: 2%;
+            margin-bottom: 3%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        a:link {
+            color: #00ff00;
+        }
+		body,td,th {
+	color: #ffffff;
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+    </style>
+    
+</head>
+
+<body bgcolor="#2c2c2c" text="#00ccff" link="#00ff00" vlink="#ff0000" alink="#ff0000">
+		 <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../index.htm"><img src="../img/HomeButton.png" alt="CELLS alive!"></a>
+          </div>
+    <h3 align="center"><a href="../cells/bactcell.htm">^ Bacteria Overview</a>&nbsp;&nbsp;&nbsp;&nbsp;Prokaryote&nbsp;&nbsp;&nbsp;&nbsp;<a href="../cells/cell_model_js.htm">Cell Model ></a><br><br>Get the <a href="../ppts.htm">Cell Model PowerPoints</a></h3>
+ 
+
+	<div class="containModel">
+        <!-- Basic Configuration Slides --><img class="img-responsive bezel" src="img/bezel.png"> <img class="img-responsive bacteriaLayout backgrounds" src="img/stage_bactcell/bacteria.png"> <img class="img-responsive envelopeLayout hideStart backgrounds" src="img/stage_bactcell/cellEnvelope.png"> <img class="img-responsive backgrounds map1 map" alt="" usemap="#bacteriaMap" src="img/stage_bactcell/bacteriaCellOverlay.png"> <img class="img-responsive hideStart backgrounds map2 map" alt="" usemap="#envelopeMap" src="img/stage_bactcell/envelopeOverlay.png"> <img class="img-responsive copyrightSlide hideStart backgrounds" src="img/stage_bactcell/copyright.png">
+        <!-- End Basic Configuration Slides -->
+        <!-- Explanation Slides Main--><img class="img-responsive nucleoid hideStart backgrounds bactSlides" src="img/stage_bactcell/nucleoid.png"> <img class="img-responsive genophore hideStart backgrounds bactSlides" src="img/stage_bactcell/genophore.png"> <img class="img-responsive plasmid hideStart backgrounds bactSlides" src="img/stage_bactcell/plasmid.png"> <img class="img-responsive cytoplasm hideStart backgrounds bactSlides" src="img/stage_bactcell/cytoplasm.png"> <img class="img-responsive endospore hideStart backgrounds bactSlides" src="img/stage_bactcell/endospore.png"> <img class="img-responsive ribosomes hideStart backgrounds bactSlides" src="img/stage_bactcell/ribosomes.png"> <img class="img-responsive storageGranule hideStart backgrounds bactSlides" src="img/stage_bactcell/StorageGranule.png"> <img class="img-responsive cellEnvelope hideStart backgrounds bactSlides" src="img/stage_bactcell/cellEnvelope.png"> <img class="img-responsive capsule hideStart backgrounds bactSlides" src="img/stage_bactcell/capsule.png"> <img class="img-responsive pili hideStart backgrounds bactSlides" src="img/stage_bactcell/pili.png"> <img class="img-responsive flagella hideStart backgrounds bactSlides" src="img/stage_bactcell/flagella.png"> <img class="img-responsive examples hideStart backgrounds bactSlides" src="img/stage_bactcell/examples.png">
+        <!-- End Explanation Slides Main-->
+        <!-- Explanation Slides Envelope--><img class="img-responsive cytoplasmicMembraneOverlay hideStart backgrounds envelopeSlide" src="img/envelope_bactcell/cytoplasmicMembrane.png"> <img class="img-responsive GramNegCellWallOverlay hideStart backgrounds envelopeSlide" src="img/envelope_bactcell/GramNegCellWall.png"> <img class="img-responsive GramPosCellWallOverlay hideStart backgrounds envelopeSlide" src="img/envelope_bactcell/GramPosCellWall.png"> <img class="img-responsive membraneProteinsOverlay hideStart backgrounds envelopeSlide" src="img/envelope_bactcell/membraneProteins.png"> <img class="img-responsive outerMembraneOverlay hideStart backgrounds envelopeSlide" src="img/envelope_bactcell/outerMembrane.png"> <img class="img-responsive porinOverlay hideStart backgrounds envelopeSlide" src="img/envelope_bactcell/porin.png">
+        <!-- End Explanation Slides -->
+        <!-- Overlays Main --><img class="img-responsive capsuleOverlay hideStart backgrounds overlay" src="img/overlays_bactcell/capsule.png"> <img class="img-responsive cellEnvelopeOverlay hideStart backgrounds overlay" src="img/overlays_bactcell/cellEnvelope.png"> <img class="img-responsive cytoplasmOverlay hideStart backgrounds overlay" src="img/overlays_bactcell/cytoplasm.png"> <img class="img-responsive endosporeOverlay hideStart backgrounds overlay" src="img/overlays_bactcell/endospore.png"> <img class="img-responsive flagellaOverlay hideStart backgrounds overlay" src="img/overlays_bactcell/flagella.png"> <img class="img-responsive genophoreOverlay hideStart backgrounds overlay" src="img/overlays_bactcell/genophore.png"> <img class="img-responsive nucleoidOverlay hideStart backgrounds overlay" src="img/overlays_bactcell/nucleoid.png"> <img class="img-responsive piliOverlay hideStart backgrounds overlay" src="img/overlays_bactcell/piliFimbriae.png"> <img class="img-responsive plasmidOverlay hideStart backgrounds overlay" src="img/overlays_bactcell/plasmid.png"> <img class="img-responsive ribosomesOverlay hideStart backgrounds overlay" src="img/overlays_bactcell/ribosomes.png"> <img class="img-responsive storageGranuleOverlay hideStart backgrounds overlay" src="img/overlays_bactcell/storageGranule.png">
+        <!-- End Overlays Main -->
+        <div class="heading"> CELLS <span class="oblique">alive!</span> Interactive Bacteria Cell </div>
+        <!-- Main MENU Code -->
+        <div class="menu menu1">
+            <div class="copyright oblique" onclick="partShow('copyrightSlide')">&copy cellsalive.com</div>
+            <div class="partOfCell">
+                <div class="column1 columns">
+                    <p id="nucleoidText" onmouseover="hoverShow('nucleoid')" onmouseout="clearOverlays()" onclick="partShow('nucleoid')">Nucleoid</p>
+                    <p id="genophoreText" onmouseover="hoverShow('genophore')" onmouseout="clearOverlays()" onclick="partShow('genophore')">Genophore</p>
+                    <p id="plasmidText" onmouseover="hoverShow('plasmid')" onmouseout="clearOverlays()" onclick="partShow('plasmid')">Plasmid</p>
+                </div>
+                <div class="column2 columns">
+                    <p id="cytoplasmText" onmouseover="hoverShow('cytoplasm')" onmouseout="clearOverlays()" onclick="partShow('cytoplasm')">Cytoplasm</p>
+                    <p id="endosporeText" onmouseover="hoverShow('endospore')" onmouseout="clearOverlays()" onclick="partShow('endospore')">Endospore</p>
+                    <p id="ribosomesText" onmouseover="hoverShow('ribosomes')" onmouseout="clearOverlays()" onclick="partShow('ribosomes')">Ribosomes</p>
+                </div>
+                <div class="column3 columns">
+                    <p id="storageGranuleText" onmouseover="hoverShow('storageGranule')" onmouseout="clearOverlays()" onclick="partShow('storageGranule')">Storage Granule</p>
+                    <p id="cellEnvelopeText" onmouseover="hoverShow('cellEnvelope')" onmouseout="clearOverlays()" onclick="envelopeShow()">Cell Envelope</p>
+                    <p id="capsuleText" onmouseover="hoverShow('capsule')" onmouseout="clearOverlays()" onclick="partShow('capsule')">Capsule</p>
+                </div>
+                <div class="column4 columns">
+                    <p id="piliText" onmouseover="hoverShow('pili')" onmouseout="clearOverlays()" onclick="partShow('pili')">Pili, Fimbriae</p>
+                    <p id="flagellaText" onmouseover="hoverShow('flagella')" onmouseout="clearOverlays()" onclick="partShow('flagella')">Flagella</p>
+                    <p id="examplesText" onmouseover="hoverShow('')" onmouseout="clearOverlays()" onclick="partShow('examples')">Examples</p>
+                </div>
+            </div>
+            <div class="return hideStart" onclick="partHide()">RETURN to CELL DIAGRAM </div>
+            <img id="muteBtn" class="img-responsive controls player" src="../img/audioOnSm.png">
+            <img id="unmuteBtn" class="img-responsive controls player" src="../img/audioOffSm.png">
+        </div>
+        <!-- End Main Menu Code -->
+        <!-- Envelope MENU Code -->
+        <div class="menu menu2 hideStart">
+            <div class="copyright oblique" onclick="menu2Copyright()">&copy cellsalive.com</div>
+            <div class="partOfCell">
+                <div class="columnEnv1 columns">
+                    <p id="GramPosCellWallText" onmouseover="hoverShow('GramPosCellWall')" onmouseout="envelopeExit()" onclick="envelopePartShow('GramPosCellWall')">Gram-positive Cell Wall</p>
+                    <p id="GramNegCellWallText" onmouseover="hoverShow('GramNegCellWall')" onmouseout="envelopeExit()" onclick="envelopePartShow('GramNegCellWall')">Gram-negative Cell Wall</p>
+                </div>
+                <div class="columnEnv2 columns">
+                    <p id="outerMembraneText" onmouseover="hoverShow('outerMembrane')" onmouseout="envelopeExit()" onclick="envelopePartShow('outerMembrane')">Outer Membrane</p>
+                    <p id="cytoplasmicMembraneText" onmouseover="hoverShow('cytoplasmicMembrane')" onmouseout="envelopeExit()" onclick="envelopePartShow('cytoplasmicMembrane')">Cytoplasmic Membrane</p>
+                </div>
+                <div class="columnEnv3 columns">
+                    <p id="membraneProteinsText" onmouseover="hoverShow('membraneProteins')" onmouseout="envelopeExit()" onclick="envelopePartShow('membraneProteins')">Membrane Proteins</p>
+                    <p id="porinText" onmouseover="hoverShow('porin')" onmouseout="envelopeExit()" onclick="envelopePartShow('porin')">Porin</p>
+                </div>
+            </div>
+            <div class="return2 hideStart" onclick="partHide('2')">RETURN to CELL ENVELOPE </div>
+            <div class="return hideStart" onclick="partHide()">RETURN to CELL DIAGRAM </div>
+        </div>
+        <!-- End Envelope Menu Code -->
+    </div>
+    <!-- End Container div -->
+    <!-- Image Maps -->
+    <map name="envelopeMap">
+        <area id="mp11" shape="poly" coords="637, 290, 638, 364, 661, 365, 662, 288" />
+        <area id="mp10" shape="poly" coords="584, 328, 583, 295, 565, 297, 567, 327" />
+        <area id="mp9" shape="poly" coords="509, 327, 509, 362, 525, 362, 525, 326" />
+        <area id="mp8" shape="poly" coords="453, 289, 455, 366, 479, 366, 480, 289" />
+        <area id="mp7" shape="poly" coords="651, 173, 652, 206, 635, 205, 636, 172" />
+        <area id="mp6" shape="poly" coords="603, 204, 589, 204, 588, 235, 604, 235" />
+        <area id="mp5" shape="poly" coords="498, 169, 500, 241, 524, 241, 523, 171" />
+        <area id="mp4" shape="poly" coords="479, 171, 480, 207, 463, 207, 464, 172" />
+        <area id="mp3" shape="poly" coords="212, 290, 237, 289, 237, 365, 214, 366" />
+        <area id="mp2" shape="poly" coords="134, 289, 134, 365, 108, 366, 109, 290" />
+        <area id="mp1" shape="poly" coords="42, 291, 41, 329, 56, 329, 58, 290" />
+        <area id="porin" shape="poly" coords="570, 173, 569, 240, 545, 240, 546, 173" />
+        <area id="cyto2" shape="poly" coords="680, 357, 682, 296, 415, 297, 416, 358" />
+        <area id="cyto1" shape="poly" coords="291, 357, 293, 298, 20, 297, 20, 357" />
+        <area id="gramN" shape="poly" coords="415, 262, 680, 263, 681, 293, 416, 294" />
+        <area id="OuterM" shape="poly" coords="415, 235, 682, 238, 682, 177, 636, 176, 627, 151, 615, 129, 591, 109, 584, 117, 595, 127, 609, 143, 615, 161, 622, 175, 536, 176, 540, 138, 559, 109, 551, 100, 534, 123, 525, 145, 524, 175, 457, 175, 453, 144, 454, 125, 461, 104, 451, 95, 443, 113, 438, 139, 441, 153, 444, 173, 415, 173" />
+        <area id="gramP" shape="poly" coords="22, 294, 74, 296, 108, 297, 183, 295, 260, 296, 292, 295, 292, 124, 275, 124, 282, 108, 279, 88, 273, 82, 267, 90, 268, 102, 266, 112, 262, 122, 162, 123, 159, 107, 162, 88, 152, 83, 148, 90, 147, 109, 151, 122, 94, 122, 102, 102, 98, 84, 85, 84, 85, 106, 80, 119, 74, 121, 24, 123" /> </map>
+    <map name="bacteriaMap">
+        <area id="pili15" shape="poly" coords="231, 311, 216, 335, 213, 360, 203, 387, 194, 407, 188, 403, 192, 398, 207, 362, 210, 337, 213, 327, 225, 308" />
+        <area id="pili14" shape="poly" coords="287, 323, 287, 349, 287, 370, 280, 384, 272, 398, 270, 411, 264, 411, 265, 398, 273, 384, 281, 368, 281, 322" />
+        <area id="pili13" shape="poly" coords="340, 323, 342, 335, 350, 363, 350, 376, 347, 386, 346, 412, 340, 411, 341, 396, 344, 377, 346, 366, 337, 337, 334, 322" />
+        <area id="pili12" shape="poly" coords="439, 322, 438, 337, 430, 360, 429, 374, 434, 390, 434, 413, 427, 413, 428, 389, 422, 371, 427, 350, 432, 334, 433, 320" />
+        <area id="pili11" shape="poly" coords="490, 323, 493, 333, 492, 350, 492, 367, 505, 390, 510, 412, 503, 411, 500, 394, 485, 368, 486, 338, 485, 321" />
+        <area id="pili10" shape="poly" coords="547, 309, 558, 327, 560, 347, 569, 375, 577, 386, 572, 390, 567, 383, 559, 362, 553, 346, 553, 331, 548, 318, 539, 312" />
+        <area id="pili9" shape="poly" coords="593, 271, 609, 275, 659, 309, 670, 310, 670, 303, 653, 300, 616, 274, 606, 268, 593, 264" />
+        <area id="pili8" shape="poly" coords="603, 229, 618, 222, 644, 223, 665, 219, 676, 215, 684, 206, 680, 202, 673, 208, 658, 216, 623, 217, 601, 223" />
+        <area id="pili7" shape="poly" coords="553, 164, 559, 153, 560, 144, 568, 136, 567, 126, 578, 108, 573, 105, 566, 119, 560, 127, 561, 135, 554, 143, 559, 144" />
+        <area id="pili6" shape="poly" coords="502, 146, 504, 130, 501, 109, 510, 93, 506, 81, 500, 82, 502, 96, 495, 106, 496, 124, 496, 147" />
+        <area id="pili5" shape="poly" coords="440, 145, 436, 132, 438, 118, 435, 98, 439, 83, 443, 84, 442, 104, 442, 127, 445, 146" />
+        <area id="pili4" shape="poly" coords="333, 144, 337, 129, 336, 119, 338, 96, 339, 86, 332, 69, 329, 72, 332, 93, 331, 111, 330, 130, 327, 145" />
+        <area id="pili3" shape="poly" coords="275, 143, 277, 115, 279, 101, 275, 87, 271, 79, 272, 69, 266, 68, 267, 90, 272, 99, 269, 115, 269, 144" />
+        <area id="pili2" shape="poly" coords="223, 158, 216, 147, 213, 133, 201, 122, 201, 108, 178, 80, 174, 83, 193, 109, 196, 125, 207, 138, 211, 151, 218, 161" />
+        <area id="pili1" shape="poly" coords="271, 242, 282, 248, 312, 253, 353, 253, 385, 251, 411, 251, 440, 251, 487, 253, 516, 248, 523, 239, 528, 241, 520, 251, 502, 255, 450, 256, 417, 256, 363, 257, 325, 256, 282, 254" />
+        <area id="geno2" shape="poly" coords="273, 230, 286, 235, 311, 235, 340, 235, 366, 238, 499, 233, 522, 233, 512, 243, 438, 242, 339, 243, 270, 238" />
+        <area id="geno1" shape="poly" coords="396, 251, 419, 248, 454, 231, 490, 227, 530, 229, 541, 219, 534, 208, 485, 211, 458, 214, 446, 220, 387, 223, 346, 216, 301, 207, 253, 207, 258, 225, 304, 225, 344, 228, 361, 234" />
+        <area id="storeG3" shape="circle" coords="481, 285, 13" />
+        <area id="storeG2" shape="circle" coords="434, 188, 15" />
+        <area id="storeG1" shape="circle" coords="223, 252, 16" />
+        <area id="plas2" shape="circle" coords="444, 289, 16" />
+        <area id="plas1" shape="circle" coords="334, 285, 16" />
+        <area id="rib2" shape="poly" coords="250, 278, 254, 286, 287, 306, 349, 287, 378, 311, 462, 302, 493, 307, 546, 288, 540, 264, 499, 278, 453, 266, 429, 274, 406, 287, 394, 274, 359, 289, 328, 265, 279, 269, 261, 268" />
+        <area id="rib1" shape="poly" coords="246, 169, 305, 159, 368, 159, 451, 159, 501, 159, 534, 182, 517, 194, 478, 195, 450, 205, 401, 209, 332, 203, 272, 192, 246, 178" />
+        <area id="nuc" shape="poly" coords="439, 213, 474, 205, 502, 198, 525, 195, 539, 195, 553, 211, 552, 231, 541, 253, 516, 265, 441, 262, 395, 263, 341, 262, 274, 263, 245, 236, 238, 215, 249, 200, 267, 196, 350, 209, 378, 213" />
+        <area id="cyto" shape="poly" coords="490, 152, 386, 154, 275, 155, 224, 171, 198, 188, 183, 212, 179, 235, 181, 254, 203, 286, 232, 303, 272, 314, 297, 315, 376, 316, 439, 316, 491, 316, 520, 310, 557, 293, 584, 268, 595, 241, 592, 217, 573, 188, 539, 164" />
+        <area id="flag5" shape="poly" coords="603, 183, 615, 174, 623, 140, 631, 125, 654, 107, 673, 103, 690, 84, 691, 59, 685, 61, 683, 79, 669, 93, 649, 100, 630, 115, 618, 133, 610, 167, 601, 175" />
+        <area id="flag4" shape="poly" coords="578, 315, 590, 329, 607, 336, 635, 333, 656, 339, 678, 354, 695, 378, 690, 381, 672, 359, 652, 345, 627, 339, 604, 344, 586, 337, 572, 320" />
+        <area id="flag3" shape="poly" coords="205, 299, 191, 311, 143, 315, 126, 323, 106, 339, 88, 362, 64, 376, 45, 385, 34, 383, 22, 394, 16, 388, 34, 374, 46, 375, 68, 365, 84, 353, 102, 330, 126, 315, 143, 310, 185, 305, 199, 293" />
+        <area id="flag2" shape="poly" coords="168, 247, 150, 246, 107, 265, 84, 263, 55, 256, 34, 263, 22, 268, 6, 264, 8, 257, 19, 261, 37, 255, 54, 249, 88, 257, 103, 259, 152, 238, 169, 239" />
+        <area id="flag1" shape="poly" coords="180, 193, 167, 175, 151, 170, 118, 162, 102, 147, 90, 115, 69, 94, 49, 89, 30, 79, 21, 49, 28, 50, 34, 71, 42, 77, 54, 82, 71, 87, 83, 96, 98, 115, 110, 146, 132, 158, 154, 163, 170, 168, 185, 188" />
+        <area id="cellE" shape="poly" coords="384, 100, 386, 130, 495, 128, 533, 136, 570, 153, 598, 178, 614, 207, 619, 242, 613, 271, 598, 296, 573, 318, 537, 336, 503, 344, 386, 345, 385, 373, 281, 374, 219, 366, 179, 349, 148, 326, 123, 293, 108, 256, 110, 210, 130, 169, 165, 134, 199, 116, 240, 104, 312, 102" />
+        <area id="cap" shape="poly" coords="141, 132, 166, 107, 175, 112, 188, 105, 194, 102, 202, 93, 214, 93, 222, 88, 230, 93, 238, 88, 249, 93, 259, 83, 268, 84, 276, 84, 286, 93, 315, 82, 335, 89, 352, 89, 383, 84, 406, 92, 424, 97, 441, 96, 456, 90, 480, 101, 492, 92, 501, 92, 512, 91, 519, 101, 528, 96, 537, 101, 546, 96, 553, 100, 563, 100, 570, 106, 574, 112, 585, 112, 591, 117, 599, 113, 624, 136, 642, 142, 643, 146, 644, 155, 652, 163, 655, 173, 668, 183, 668, 192, 672, 203, 669, 211, 674, 221, 671, 230, 677, 244, 676, 249, 676, 258, 667, 274, 665, 298, 647, 324, 635, 339, 627, 354, 611, 363, 603, 361, 592, 375, 578, 381, 565, 378, 559, 386, 549, 383, 542, 392, 533, 389, 525, 394, 512, 386, 498, 388, 488, 396, 471, 392, 460, 385, 438, 394, 419, 392, 395, 388, 386, 395, 376, 391, 353, 396, 331, 394, 316, 390, 289, 400, 277, 390, 268, 392, 261, 390, 250, 398, 238, 392, 232, 396, 221, 386, 212, 387, 202, 379, 194, 388, 174, 375, 163, 362, 137, 354, 119, 332, 92, 298, 88, 272, 79, 260, 80, 252, 79, 240, 86, 230, 84, 219, 88, 209, 86, 200, 91, 192, 90, 183, 106, 170, 110, 157, 117, 153, 120, 141" /> </map>
+    <!-- End Image Maps -->
+    </div>
+
+</body>
+
+</html>

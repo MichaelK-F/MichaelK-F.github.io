@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+		
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <title>Streptococcus Jigsaw Puzzle</title>
+        <meta name="description" content="Jigsaw puzzle of Streptococcus.">
+    <!--[if lt IE 9]><script type="text/javascript" src="js/bin/flashcanvas.js"></script><![endif]-->
+    <link rel="stylesheet" href="css/modal.css" type="text/css" charset="utf-8" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+    <link rel="stylesheet" href="css/buttons.css" type="text/css" charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="text/javascript">
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+    </script>
+</head>
+<body bgcolor="#2c2c2c" text="#00ccff" link="#00ff00" vlink="#ff0000" alink="#ff0000">
+		 <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../index.htm"><img src="../img/HomeButton.png" alt="CELLS alive!"></a>
+          </div>
+    <h1 align="center" class="heading">Form a <em>Streptococcus</em> Colony</h1>
+    <h3 align="center"><a href="index.htm">Return to Puzzle Overview</a><a href="cell_model_js.htm"></a></h3>
+</p>
+<div align="center">
+  <h3 class="Hints">To rotate a selected piece, use arrow keys or double click. </h3>
+</div>
+
+<div id="canvas-puzzle">
+    <div id="game-options">
+        <ul>
+        </ul>
+        <h4><a href="#" id="SHOW_PREVIEW" class="button middle right" title="Help">Preview</a></h4>
+        <br class="clear"/>
+  </div>
+    <div id="canvas-wrap">
+        <canvas id="canvas"></canvas>
+        <canvas class="hide" id="image"></canvas>
+        <canvas class="hide" id="image-preview"></canvas>
+    </div>
+</div>
+<p><!--FIN ROMPECABEZAS --></p>
+	<p>&nbsp;</p>
+<p>&nbsp;</p>
+  
+  <!-- VENTANA EMERGENTE -->
+</p>
+<div class="hide" id="overlay"></div><!-- FIN VENTANA EMERGENTE -->
+
+<!-- MENSAJE DE FELICITACIONES -->
+<!--<div id="congrat" class="hide">
+    <h1>Congratulations!</h1>
+    <h2>You solved it in</h2>
+    <h3><span id="time"></span></h3>
+    <form method="post" class="hide" action="" target="save-score" onsubmit="jigsaw.UI.close_lightbox();">
+        <label>
+        Your Name: <input type="text" name="name" />
+        </label>
+        <input type="submit" value="Save score" />
+        <input type="hidden" id="time-input" name="time"/>
+    </form>
+</div>-->
+
+<!-- FIN MENSAJE DE FELICITACIONES -->
+
+<!-- AYUDA -->
+<div id="help" class="hide">
+    <h2>Como jugar</h2>
+    <ul>
+        <li>Cambia el numero de piezas con el selector en la parte superior.<br/>
+            <img src="images/selector.png"/>
+        </li>
+        
+        <li>Usa la teclas derecha/izquierda o el click derecho para girar las fichas.</li>
+
+        <li>Oculta las fichas del centro o del borde:<br>
+            <img src="images/toggle.png"/>
+        </li>
+    </ul>
+    
+    <h3>Buena suerte.</h3>
+</div><!-- FIN AYUDA -->
+
+<form class="hide" method="post" id="redirect-form">
+    <input type="text" name="time" id="t" />
+    <input type="text" name="parts" id="p" />
+</form>
+<iframe class="hide" src="about:blank" id="save-score" name="save-score"></iframe>
+<!-- SCRIPTS ROMPECABEZAS -->
+<script src="js/canvas-event.min.js"></script>
+<script src="js/event-emiter.min.js"></script>
+<script src="js/canvas-puzzle.min.js"></script>
+<script src="js/howler.js"></script>
+<script src="js/howler.min.js"></script>
+
+<!--[if lt IE 9]><script type="text/javascript" src="js/canvas-puzzle.ie.min.js"></script><![endif]-->
+<script>
+;(function() {
+jsaw = new jigsaw.Jigsaw({
+        defaultImage: "images/puzzle/strep.jpg",
+        spread: .6,
+        piecesNumberTmpl: "%d Pieces",
+        container: "canvas-puzzle"
+    });
+
+    if (jigsaw.GET["image"]) { jsaw.set_image(jigsaw.GET["image"]); }
+// this is just an example
+}());
+</script>
+
+</body>
+</html>
