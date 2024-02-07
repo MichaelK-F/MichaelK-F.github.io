@@ -1,6 +1,6 @@
 {
-    "short_name": "SURF",
-    "name": "Microsoft Edge SURF",
+    "short_name": "Edge Surf",
+    "name": "Microsoft Edge Surf",
     "icons": [
         {
             "src": "resources/icons/android-icon-36x36.png",
