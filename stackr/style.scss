@@ -1,0 +1,304 @@
+:root {
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+$canvas-width: 300px;
+$canvas-height: 540px;
+
+html,
+body {
+    background-color: #222;
+    margin: 0;
+    padding: 0;
+
+    color: white;
+    position: relative;
+
+    &,
+    canvas,
+    main {
+        width: $canvas-width;
+        overflow: hidden;
+    }
+
+    canvas,
+    main {
+        height: $canvas-height;
+    }
+}
+
+* {
+    box-sizing: border-box;
+    user-select: none;
+}
+
+*[hidden] {
+    display: none !important;
+}
+
+main {
+    $canvas-margin: 3px;
+    $square: 30px;
+
+    position: relative;
+    margin: $canvas-margin;
+
+    & > button {
+        $padding: 6px;
+        $padding-active: 5px;
+        $margin: $square * 1.5;
+
+        position: absolute;
+        top: $margin;
+        margin: 0;
+        padding: 0;
+        border: none;
+        cursor: pointer;
+
+        background-color: transparent;
+
+        border-radius: 4px;
+        padding: $padding;
+        outline: none;
+
+        transition: all 0.04s ease;
+        transform: translate(-50%, -50%);
+
+        max-width: $square + $padding * 2;
+        max-height: $square + $padding * 2;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            position: relative;
+            width: $square;
+            height: $square;
+        }
+
+        &#restart {
+            left: $margin;
+        }
+
+        &#pause {
+            right: $margin;
+            transform: translate(50%, -50%);
+        }
+
+        &:hover {
+            background-color: rgba(170, 170, 170, 0.35);
+        }
+
+        &:active {
+            padding: $padding-active;
+        }
+    }
+
+    div.controls {
+        $top: 7rem;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        color: #cccccc;
+
+        position: absolute;
+        top: $top;
+        left: 0;
+
+        font-size: 1rem;
+
+        width: 100%;
+        height: calc(100% - #{$top});
+
+        pointer-events: none;
+
+        padding: 10px;
+
+        &[hidden] {
+            display: flex !important;
+            opacity: 0;
+        }
+
+        &.animated {
+            transition: opacity 0.2s ease;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        p {
+            margin: 0.5em 0;
+            text-align: center;
+            color: white;
+        }
+
+        div.row {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+
+            div.spacer {
+                width: 10px;
+            }
+        }
+    }
+}
+
+kbd {
+    display: block;
+    width: fit-content;
+    height: fit-content;
+    min-width: 1.8em;
+
+    text-align: center;
+
+    background-color: #eee;
+    border-radius: 3px;
+    border: 5px solid #aaa;
+    border-right-color: #ccc;
+    border-bottom-color: #ccc;
+
+    color: #333;
+    font-weight: 700;
+    line-height: 1;
+    padding: 2px 4px;
+    white-space: nowrap;
+
+    &.space {
+        padding: 0 2em;
+    }
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    a {
+        font-size: 13px;
+        color: gray;
+        text-decoration: none;
+        margin: 0 6px;
+    }
+}
+
+div.rebrand-overlay {
+    $animation-props: 1.75s ease 0.1s forwards;
+
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(8px);
+    z-index: 10;
+
+    div.rebrand {
+        $margin: 10px;
+        width: calc(100% - (#{$margin} * 2));
+
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+
+        background-color: #333;
+
+        z-index: 100;
+
+        text-align: center;
+
+        padding: 20px 10px;
+        margin: $margin;
+
+        border-radius: 6px;
+
+        div.icons {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            max-width: 100%;
+
+            img.icon {
+                width: 100px;
+
+                &.tetrys {
+                    transform: translateY(-16.67%);
+
+                    @keyframes fade-icon-tetrys {
+                        to {
+                            filter: grayscale(100%);
+                        }
+                    }
+
+                    animation: fade-icon-tetrys $animation-props;
+                }
+            }
+        }
+
+        .tetrys {
+            $start-color: #fff;
+            @keyframes fade-color-tetrys {
+                from {
+                    color: $start-color;
+                }
+                to {
+                    color: #888;
+                }
+            }
+
+            color: $start-color;
+            animation: fade-color-tetrys $animation-props;
+            text-decoration: line-through;
+        }
+
+        .stacker {
+            $start-color: #fff;
+
+            @keyframes fade-color-stacker {
+                from {
+                    color: $start-color;
+                }
+                to {
+                    color: rgb(255, 57, 255);
+                }
+            }
+
+            font-weight: bold;
+            color: $start-color;
+            animation: fade-color-stacker $animation-props;
+        }
+
+        button.ok {
+            cursor: pointer;
+
+            background: dodgerblue;
+            box-shadow: none;
+            border: none;
+            padding: 5px 10px;
+            color: white;
+            border-radius: 4px;
+            font-weight: bold;
+
+            filter: grayscale(100%);
+            @keyframes fade-in-ok-button {
+                from {
+                    transform: scale(1);
+                    filter: grayscale(100%);
+                }
+                50% {
+                    transform: scale(1.1);
+                }
+                to {
+                    transform: scale(1);
+                    filter: grayscale(0%);
+                }
+            }
+
+            animation: fade-in-ok-button 0.5s ease forwards 0.5s;
+        }
+    }
+}

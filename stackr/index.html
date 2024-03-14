@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Stacker</title>
+
+        <link rel="shortcut icon" href="icons/icon16.png" type="image/x-icon" />
+        <link rel="stylesheet" href="style.css" />
+
+        <script src="main-bundle.js" type="module" defer></script>
+    </head>
+    <body>
+        <main>
+            <canvas id="canvas" width="450" height="810"></canvas>
+
+            <button id="restart">
+                <img src="assets/restart.png" alt="Restart" />
+            </button>
+            <button id="pause">
+                <img src="assets/pause.png" alt="pause" />
+            </button>
+
+            <div class="controls" hidden>
+                <div class="row">
+                    <kbd>&uparrow;</kbd>
+                    <div class="spacer"></div>
+                    <kbd>W</kbd>
+                </div>
+
+                <p>&circlearrowright; Rotate</p>
+
+                <div class="row">
+                    <kbd>&leftarrow;</kbd>
+                    <kbd>&rightarrow;</kbd>
+                    <div class="spacer"></div>
+                    <kbd>A</kbd>
+                    <kbd>D</kbd>
+                </div>
+
+                <p>&leftarrow; Left/Right &rightarrow;</p>
+
+                <div class="row">
+                    <kbd>&downarrow;</kbd>
+                    <div class="spacer"></div>
+                    <kbd>S</kbd>
+                </div>
+
+                <p>&downarrow; Drop down &downarrow;</p>
+
+                <kbd class="space">Space</kbd>
+
+                <p>&dArr; Hard drop &dArr;</p>
+
+                <kbd>Esc</kbd>
+
+                <p>Close popup &times;</p>
+            </div>
+        </main>
+
+        <div id="ads"></div>
+
+        <footer>
+            <a
+                href="mailto:dev.kristian@protonmail.com"
+                rel="noreferrer noopener"
+                target="_blank"
+                >Contact</a
+            >
+            <a
+                href="mailto:kristian.nessa@protonmail.com"
+                rel="noreferrer noopener"
+                target="_blank"
+                style="color: lightblue"
+                >Advertise here!</a
+            >
+            <a
+                href="https://ko-fi.com/kris10an"
+                rel="noreferrer noopener"
+                target="_blank"
+                >Donate</a
+            >
+        </footer>
+
+        <div class="rebrand-overlay" hidden>
+            <div class="rebrand-overlay">
+                <div class="rebrand">
+                    <div class="icons">
+                        <img
+                            class="icon tetrys"
+                            src="icons/icon_old.png"
+                            alt="Old icon"
+                        />
+                        <img
+                            class="icon stacker"
+                            src="icons/icon.png"
+                            alt="New icon"
+                        />
+                    </div>
+                    <h2>
+                        Welcome to
+                        <span class="stacker">Stacker</span>!
+                    </h2>
+                    <p>
+                        Because of a copyright complaint,
+                        <span class="tetrys">Tetrys</span> has now changed name
+                        to <span class="stacker">Stacker</span>.
+                    </p>
+                    <button class="ok">Alright!</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

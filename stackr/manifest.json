@@ -1,0 +1,42 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+    "$schema": "https://json.schemastore.org/chrome-manifest",
+
+    "name": "Stacker - Falling blocks!",
+    "short_name": "Stacker",
+    "version": "2.2.21",
+    "description": "A fun arcade game that plays in a popup. Stack falling tetra blocks without hitting the ceiling!",
+
+    "icons": {
+        "16": "./icons/icon16.png",
+        "24": "./icons/icon24.png",
+        "32": "./icons/icon32.png",
+        "48": "./icons/icon48.png",
+        "128": "./icons/icon128.png",
+        "256": "./icons/icon256.png"
+    },
+
+    "background": {
+        "service_worker": "background-bundle.js"
+    },
+
+    "action": {
+        "default_icon": {
+            "16": "./icons/icon16.png",
+            "24": "./icons/icon24.png",
+            "32": "./icons/icon32.png",
+            "48": "./icons/icon48.png",
+            "128": "./icons/icon128.png",
+            "256": "./icons/icon256.png"
+        },
+        "default_title": "Stacker",
+        "default_popup": "index.html"
+    },
+
+    "permissions": ["storage"],
+
+    "offline_enabled": true,
+
+    "manifest_version": 3
+}
