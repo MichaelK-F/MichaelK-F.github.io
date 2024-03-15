@@ -2,6 +2,6 @@
 My website!
 
 TODO:
-update the fake updates
+update the fake updates,
 fix chrome dino visual bugs
 
