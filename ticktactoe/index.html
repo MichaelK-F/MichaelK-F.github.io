@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-367C4F1NZB"></script>
+   <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-367C4F1NZB');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="styles/styles.css">
+  <title>TICTACTOE</title>
+</head>
+
+<body>
+  <h2 class="text-center mt-4">Tic<span class="mid-title">Tac</span>Toe</h2>
+  <h5 class="text-center"> Enter players' names and click play to start the game!</h5>
+  <div class="container">
+    <form class="player-info mb-4">
+      <div class="form-group">
+        <label for="player1">Player 1 (X)</label>
+        <input type="text" class="form-control" id="player1" placeholder="Name of player 1">
+      </div>
+
+      <div class="form-group">
+        <label for="player2">Player 2 (O)</label>
+        <input type="text" class="form-control" id="player2" placeholder="Name of player 2">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Play</button>
+    </form>
+    <div class="col-4 offset-4 place hidden">
+    <div class="alert alert-primary game-status text-center">
+      <h4>Board:</h4>
+    </div>
+
+    <div class="container mx-auto">
+      <div id="board">
+        <div class="cell text-center display-4"></div>
+        <div class="cell text-center display-4"></div>
+        <div class="cell text-center display-4"></div>
+        <div class="cell text-center display-4"></div>
+        <div class="cell text-center display-4"></div>
+        <div class="cell text-center display-4"></div>
+        <div class="cell text-center display-4"></div>
+        <div class="cell text-center display-4"></div>
+        <div class="cell text-center display-4"></div>
+      </div>
+    </div>
+    <button id="reset" class="mt-4 text-center btn btn-primary">Restart</button>
+  </div>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
