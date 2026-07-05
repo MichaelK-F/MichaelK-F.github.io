@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intune Android QR + WiFi</title>
+  <style>
+    :root {
+      --bg:#f3f4f6; --card:#fff; --text:#111827; --muted:#6b7280;
+      --border:#d1d5db; --primary:#0078d4; --primary-hover:#005a9e; --danger:#b00020;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 24px; background: var(--bg); color: var(--text);
+      font: 14px/1.4 "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .card {
+      max-width: 720px; margin: 0 auto; background: var(--card);
+      border-radius: 10px; padding: 20px; box-shadow: 0 6px 20px rgba(0,0,0,.08);
+    }
+    h1 { margin: 0 0 8px; font-size: 22px; }
+    p.desc { margin: 0 0 18px; color: var(--muted); }
+    .group { margin-bottom: 14px; }
+    label { display: block; margin-bottom: 6px; font-weight: 600; }
+    input[type="text"], input[type="password"], textarea, select {
+      width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 6px;
+      background: #fff; color: var(--text);
+    }
+    textarea { min-height: 180px; resize: vertical; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .hint { margin-top: 5px; color: var(--muted); font-size: 12px; }
+    .actions {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 6px;
+    }
+    button {
+      border: 0; border-radius: 6px; padding: 10px 12px; cursor: pointer;
+      background: var(--primary); color: #fff; font-weight: 600;
+    }
+    button:hover { background: var(--primary-hover); }
+    #downloadBtn[hidden] { display: none; }
+    .error {
+      margin-top: 12px; color: var(--danger); font-weight: 600; min-height: 20px; white-space: pre-wrap;
+    }
+    #qrcode {
+      margin-top: 14px; min-height: 24px; display: flex; justify-content: center;
+      padding: 10px; background: #fafafa; border: 1px dashed var(--border); border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Intune Android QR + WiFi</h1>
+    <p class="desc">Upload Intune enrollment JSON, inject WiFi settings, generate enrollment QR.</p>
+
+    <div class="group">
+      <label for="fileUpload">Enrollment JSON File</label>
+      <input id="fileUpload" type="file" accept=".json,application/json" />
+      <div class="hint">You can also paste/edit JSON manually below.</div>
+    </div>
+
+    <div class="group">
+      <label for="exportData">JSON Data</label>
+      <textarea id="exportData" placeholder="Paste Intune JSON here..."></textarea>
+    </div>
+
+    <div class="group">
+      <label for="ssid">WiFi SSID</label>
+      <input id="ssid" type="text" placeholder="Network name (SSID)" />
+    </div>
+
+    <div class="group">
+      <label for="password">WiFi Password</label>
+      <input id="password" type="password" placeholder="Leave blank for open network" />
+    </div>
+
+    <div class="group">
+      <label for="security">Security Type</label>
+      <select id="security">
+        <option value="WPA">WPA / WPA2 / WPA3</option>
+        <option value="WEP">WEP</option>
+        <option value="NONE">None (Open)</option>
+      </select>
+    </div>
+
+    <div class="group">
+      <label for="hidden">Hidden SSID</label>
+      <select id="hidden">
+        <option value="false">No</option>
+        <option value="true">Yes</option>
+      </select>
+    </div>
+
+    <div class="actions">
+      <button id="generateBtn" type="button">Generate QR</button>
+      <button id="downloadBtn" type="button" hidden>Download PNG</button>
+      <button id="resetBtn" type="button">Reset</button>
+    </div>
+
+    <div id="errorBox" class="error" aria-live="polite"></div>
+    <div id="qrcode" aria-live="polite"></div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    (() => {
+      const el = {
+        fileUpload: document.getElementById('fileUpload'),
+        exportData: document.getElementById('exportData'),
+        ssid: document.getElementById('ssid'),
+        password: document.getElementById('password'),
+        security: document.getElementById('security'),
+        hidden: document.getElementById('hidden'),
+        qrcode: document.getElementById('qrcode'),
+        generateBtn: document.getElementById('generateBtn'),
+        downloadBtn: document.getElementById('downloadBtn'),
+        resetBtn: document.getElementById('resetBtn'),
+        errorBox: document.getElementById('errorBox')
+      };
+
+      let qrDataUrl = "";
+
+      const setError = (msg = "") => { el.errorBox.textContent = msg; };
+
+      function normalizeEnrollmentJson(obj) {
+        const payload =
+          obj && typeof obj.qrCodeContent === "object" && obj.qrCodeContent !== null
+            ? obj.qrCodeContent
+            : obj;
+
+        if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
+          throw new Error("JSON root must be an object.");
+        }
+
+        const clean = { ...payload };
+        delete clean.expirationDate;
+        return clean;
+      }
+
+      function buildProvisioningJson() {
+        const raw = el.exportData.value.trim();
+        if (!raw) throw new Error("Enrollment JSON is required.");
+
+        let parsed;
+        try {
+          parsed = JSON.parse(raw);
+        } catch {
+          throw new Error("Invalid JSON format.");
+        }
+
+        const data = normalizeEnrollmentJson(parsed);
+
+        const ssid = el.ssid.value.trim();
+        const password = el.password.value;
+        const security = el.security.value;
+        const hidden = el.hidden.value === "true";
+
+        if (!ssid) throw new Error("WiFi SSID is required.");
+        if (security === "NONE" && password.trim()) {
+          throw new Error("Security NONE selected: password must be empty.");
+        }
+
+        data["android.app.extra.PROVISIONING_WIFI_SSID"] = ssid;
+        data["android.app.extra.PROVISIONING_WIFI_PASSWORD"] = password;
+        data["android.app.extra.PROVISIONING_WIFI_SECURITY_TYPE"] = security;
+        data["android.app.extra.PROVISIONING_WIFI_HIDDEN"] = hidden;
+
+        return JSON.stringify(data);
+      }
+
+      function renderQr(text) {
+        if (typeof window.QRCode === "undefined") {
+          throw new Error("QRCode library failed to load.");
+        }
+
+        el.qrcode.innerHTML = "";
+        qrDataUrl = "";
+        el.downloadBtn.hidden = true;
+
+        new QRCode(el.qrcode, {
+          text,
+          width: 320,
+          height: 320,
+          colorDark: "#000000",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.L
+        });
+
+        const canvas = el.qrcode.querySelector("canvas");
+        const img = el.qrcode.querySelector("img");
+
+        if (canvas) qrDataUrl = canvas.toDataURL("image/png");
+        else if (img?.src) qrDataUrl = img.src;
+        else throw new Error("QR render failed.");
+
+        el.downloadBtn.hidden = false;
+      }
+
+      function onGenerate() {
+        setError("");
+        try {
+          const finalJson = buildProvisioningJson();
+          renderQr(finalJson);
+        } catch (err) {
+          setError(err.message || "Failed to generate QR.");
+        }
+      }
+
+      function onDownload() {
+        setError("");
+        if (!qrDataUrl) {
+          setError("Generate a QR code first.");
+          return;
+        }
+        const a = document.createElement("a");
+        a.href = qrDataUrl;
+        a.download = "intune-enrollment-qr.png";
+        a.click();
+      }
+
+      function onReset() {
+        setError("");
+        el.exportData.value = "";
+        el.ssid.value = "";
+        el.password.value = "";
+        el.security.selectedIndex = 0;
+        el.hidden.selectedIndex = 0;
+        el.qrcode.innerHTML = "";
+        qrDataUrl = "";
+        el.downloadBtn.hidden = true;
+      }
+
+      async function onFilePicked(e) {
+        setError("");
+        const file = e.target.files?.[0];
+        if (!file) return;
+        try {
+          el.exportData.value = await file.text();
+        } catch {
+          setError("Could not read selected file.");
+        }
+      }
+
+      el.fileUpload.addEventListener("change", onFilePicked);
+      el.generateBtn.addEventListener("click", onGenerate);
+      el.downloadBtn.addEventListener("click", onDownload);
+      el.resetBtn.addEventListener("click", onReset);
+    })();
+  </script>
+</body>
+</html>
